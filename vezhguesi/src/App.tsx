@@ -1,6 +1,8 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from './components/Dashboard'
+import Dashboard from './pages/Dashboard'
+import PageLayout from './components/PageLayout';
+import Bots from './pages/Bots';
 
 function App() {
 
@@ -8,13 +10,15 @@ function App() {
     <div className="App">
       <div>
         <Router>
-          {/* <Navbar /> */}
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-          </Routes>
+          <PageLayout />
+          <div className='pl-[280px] pt-[110px]'>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/bots" element={<Bots />} />
+            </Routes>
+          </div>
         </Router>
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }
