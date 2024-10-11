@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from './pages/Dashboard'
 import PageLayout from './components/PageLayout';
 import Bots from './pages/Bots';
+import Categories from './pages/Categories';
+import MyReports from './pages/MyReports';
+import Tools from './pages/Tools';
 
 function App() {
 
@@ -15,6 +18,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/bots" element={<Bots />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/reports" element={<MyReports />} />
+              <Route path="/tools" element={<Tools />} />
             </Routes>
           </div>
         </Router>
