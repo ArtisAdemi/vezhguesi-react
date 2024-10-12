@@ -14,7 +14,7 @@ function App() {
       <div>
         <Router>
           <PageLayout />
-          <div className="pl-[280px] pt-[110px]">
+          <div className="pl-[280px] pt-[110px] overflow-x-hidden">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/bots" element={<Bots />} />

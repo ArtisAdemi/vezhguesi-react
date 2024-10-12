@@ -1,21 +1,30 @@
 import { ResponsiveLine } from '@nivo/line'
-import data from '../assets/data/mockData'
 
-const LineChart: React.FC = () => {
-    console.log(data)
+interface LineChartProps {
+    data: Array<{
+        id: string;
+        data: Array<{ x: string; y: number }>;
+    }>;
+    xAxisLabel: string;
+    yAxisLabel: string;
+}
+
+const LineChart: React.FC<LineChartProps> = ({ data, xAxisLabel, yAxisLabel }) => {
+    console.log('Data passed to chart:', data); // Debugging line
+
     return (
         <ResponsiveLine
             data={data}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+            yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
             axisTop={null}
             axisRight={null}
             axisBottom={{
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'X Axis',
+                legend: xAxisLabel,
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
@@ -23,7 +32,7 @@ const LineChart: React.FC = () => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'Y Axis',
+                legend: yAxisLabel,
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
