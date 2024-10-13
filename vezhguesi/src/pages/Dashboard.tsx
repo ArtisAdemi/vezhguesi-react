@@ -2,10 +2,27 @@ import React from 'react'
 import LineChart from '../components/LineChart'
 import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
+import PieChart from '../components/PieChart'
+
+// Transform mockSentimentData to the expected format
+const transformedData = mockSentimentData.map(item => {
+    const positiveValue = item.data
+        .filter(d => d.y > 0)
+        .reduce((acc, curr) => acc + curr.y, 0);
+
+    const negativeValue = item.data
+        .filter(d => d.y < 0)
+        .reduce((acc, curr) => acc + Math.abs(curr.y), 0);
+
+    return [
+        { id: `${item.id}-positive`, label: 'Positive', value: positiveValue },
+        { id: `${item.id}-negative`, label: 'Negative', value: negativeValue }
+    ];
+}).flat();
 
 const Dashboard: React.FC = () => {
     return (
-        <div className='flex gap-4'>
+        <div className='gap-4'>
             <div style={{ height: '400px', width: '800px' }}>
                 <LineChart
                     data={data}
@@ -19,6 +36,9 @@ const Dashboard: React.FC = () => {
                     xAxisLabel="Month"
                     yAxisLabel="Sentiment"
                 />
+            </div>
+            <div style={{ height: '400px', width: '400px' }}>
+                <PieChart data={transformedData} />
             </div>
         </div>
     )
