@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
                         <h1 className='text-[#6C6C6C] text-3xl mb-4'>Profile</h1>
                         <img src="" alt="" />
                         <h1 className='font-bold text-3xl'>Florian Berisha</h1>
-                        <h1 className='text-[#6C6C6C] text-xl'>lorem ipsum</h1>
+                        <h1 className='text-[#6C6C6C] text-xl'>lorem ipsum 2</h1>
                     </div>
                     <div className='flex justify-between'>
                         <div className='items-center flex flex-col'>
