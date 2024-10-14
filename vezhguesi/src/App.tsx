@@ -9,6 +9,7 @@ import Tools from './pages/Tools';
 import Favorites from './pages/Favorites';
 import Signup from './pages/Signup';
 import VerifyEmail from "./pages/VerifyEmail";
+import Profile from "./pages/Profile";
 
 function AppContent() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AppContent() {
           <Route path="/tools" element={<Tools />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/verify-signup/:token" element={<VerifyEmail />} />
         </Routes>
       </div>
