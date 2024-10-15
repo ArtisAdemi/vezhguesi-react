@@ -10,7 +10,7 @@ const Profile: React.FC = () => {
                     <h1>Payments</h1>
                 </div>
             </div>
-            <div className='flex bg-white mt-8 '>
+            <div className='flex bg-white mt-8 py-4'>
                 <div className='leftSide w-[45%] px-[6%] border-2 border-l-0 border-t-0 border-b-0 flex flex-col py-12 justify-center'>
                     <div className='flex flex-col items-center mb-4'>
 
