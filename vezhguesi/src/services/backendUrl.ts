@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:3001/api";
+export const API_URL = process.env.NODE_ENV === 'stage' ? process.env.API_URL_STAGE : process.env.API_URL_TEST;
