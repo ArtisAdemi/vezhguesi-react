@@ -63,7 +63,6 @@ const Favorites: React.FC = () => {
       profileImage: "path/to/profile2.jpg", // Replace with actual profile image path
       author: "Lorem Ipsum",
     },
-    // Add more card objects as needed
   ];
 
   return (

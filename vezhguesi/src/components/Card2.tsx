@@ -14,7 +14,7 @@ interface CardProps {
 
 const Card2: React.FC<CardProps> = ({ title, description, likes, author }) => {
   return (
-    <div className="flex flex-row mt-6 bg-white shadow-md rounded-lg overflow-hidden w-[458px] h-[210px]">
+    <div className="flex flex-row mt- bg-white shadow-md rounded-lg overflow-hidden w-[458px] h-[210px]">
       {/* Image Section */}
       <img
         className="w-1/3 object-cover h-full p-2 rounded-2xl"
