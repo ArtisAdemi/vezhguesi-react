@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
-import { FaHome, FaPen, FaRobot, FaFileAlt, FaStar, FaTools, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaPen, FaRobot, FaFileAlt, FaStar, FaTools } from 'react-icons/fa';
+import Logout from "./Logout";
 //import Sidebar from "./Sidebar";
 
 const PageLayout: React.FC = () => {
@@ -59,21 +60,19 @@ const PageLayout: React.FC = () => {
           </ul>
         </nav>
         <div className="absolute bottom-0 left-0 p-4">
-          <button className="flex items-center justify-center w-full bg-gray-700 text-white px-4 py-2 rounded">
-            <FaSignOutAlt className="mr-2" />
-            Logout
-          </button>
+          <Logout />
         </div>
-        <Navbar />
+
       </aside>
 
       {/* Main Content */}
       <div className="flex-1 ml-64">
         {/* Navbar */}
-
+        <Navbar />
 
         {/* Main Content Area */}
-        <main className="mt-12 border border-t-0 px-8 py-12">
+        <main className="mt-12 border border-t-0 border-b-0 px-8 py-12"
+          style={{ boxShadow: 'inset 0 6px 10px rgba(0, 0, 0, 0.15)' }}>
           <Outlet />
         </main>
       </div>
