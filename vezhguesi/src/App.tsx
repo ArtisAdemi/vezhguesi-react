@@ -42,14 +42,14 @@ function AppContent() {
             <Route path="/reports" element={<MyReports />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/signup" element={<Signup />} />
             <Route path="/singlebot" element={<Singlebot />} />
-            <Route path="/signin" element={<Signin />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/singlereport" element={<SingleReport />} />
 
             <Route path="/verify-signup/:token" element={<VerifyEmail />} />
           </Route>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
         </Routes>
       </div>
     </div>
