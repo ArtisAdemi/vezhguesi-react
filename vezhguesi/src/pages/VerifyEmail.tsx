@@ -8,7 +8,6 @@ const VerifyEmail: React.FC = () => {
 
   useEffect(() => {
     const verifyEmail = async () => {
-      console.log("token", token);
       if (token) {
         try {
           await AuthService.verifyEmail({ token });
