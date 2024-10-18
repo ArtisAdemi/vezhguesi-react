@@ -17,6 +17,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Singlebot from "./pages/Singlebot";
 import Signin from "./pages/Signin";
 import SingleReport from "./pages/SingleReport";
+import LandingPage from "./pages/LandingPage";
 
 function AppContent() {
   // const location = useLocation();
@@ -44,6 +45,7 @@ function AppContent() {
         <Route path="/singlebot" element={<Singlebot />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/singlereport" element={<SingleReport />} />
+        <Route path="/landingpage" element={<LandingPage />} />
 
         <Route path="/verify-signup/:token" element={<VerifyEmail />} />
       </Routes>
