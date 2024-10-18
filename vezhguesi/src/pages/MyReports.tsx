@@ -4,6 +4,7 @@ import PieChart from "../components/PieChart";
 import LineChart from "../components/LineChart";
 import mockData from "../assets/data/mockData";
 import mockSentimentData from "../assets/data/mockSentimentData";
+
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
   const [selectedView, setSelectedView] = useState<string>(viewOptions[0]);
@@ -50,9 +51,8 @@ const MyReports: React.FC = () => {
             {[1, 2, 3, 4].map((report, index) => (
               <div
                 key={index}
-                className={`flex flex-row p-4 border rounded-lg ${
-                  report === 1 ? "border-[#EFF2F4]" : ""
-                } bg-[#EFF2F4] hover:shadow-lg`}
+                className={`flex flex-row p-4 border rounded-lg ${report === 1 ? "border-[#EFF2F4]" : ""
+                  } bg-[#EFF2F4] hover:shadow-lg`}
               >
                 {/* Image */}
                 <div className="w-20 h-20 mr-4">
