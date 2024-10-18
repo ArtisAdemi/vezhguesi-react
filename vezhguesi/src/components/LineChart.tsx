@@ -10,7 +10,6 @@ interface LineChartProps {
 }
 
 const LineChart: React.FC<LineChartProps> = ({ data, xAxisLabel, yAxisLabel }) => {
-    console.log('Data passed to chart:', data); // Debugging line
 
     return (
         <ResponsiveLine

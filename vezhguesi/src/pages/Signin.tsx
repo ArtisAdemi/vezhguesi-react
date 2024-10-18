@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import google from "../assets/google.jpg";
+import { LoginRequest } from "../models/Auth";
+import AuthService from "../services/Auth";
+import { useUser } from "../context/UserContext";
 
 const Signin: React.FC = () => {
+  const [loginData, setLoginData] = useState<LoginRequest>({
+    email: "",
+    password: "",
+  });
+
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginData((prevData: LoginRequest) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await AuthService.login(loginData);
+      localStorage.setItem("token", response.token);
+      setUser(response);
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to sign in:", error);
+    }
+  };
+
   return (
     <div className="flex flex-row items-center justify-evenly bg-white min-h-screen">
       {/* Left side: Sign up information */}
@@ -23,7 +55,7 @@ const Signin: React.FC = () => {
       {/* Right side: Sign in form */}
       <div className="flex flex-col items-center md:w-1/3 p-8">
         <h1 className="text-3xl font-semibold mb-6">Sign In</h1>
-        <form className="w-full max-w-md">
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div className="mb-4">
             <input
@@ -31,6 +63,8 @@ const Signin: React.FC = () => {
               name="email"
               placeholder="Enter Email"
               className="w-full p-3 border rounded-md shadow-sm placeholder:text-[#2c2c31] focus:outline-none focus:border-blue-500"
+              value={loginData.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -41,6 +75,8 @@ const Signin: React.FC = () => {
               name="password"
               placeholder="Enter Password"
               className="w-full p-3 border rounded-md shadow-sm placeholder:text-[#2c2c31] focus:outline-none focus:border-blue-500"
+              value={loginData.password}
+              onChange={handleChange}
             />
           </div>
 

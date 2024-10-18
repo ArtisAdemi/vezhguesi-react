@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import Singlebot from "./pages/Singlebot";
 import Signin from "./pages/Signin";
 import SingleReport from "./pages/SingleReport";
+import { UserProvider } from "./context/UserContext";
 
 
 
@@ -54,7 +55,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <AppContent />
+        <UserProvider>
+          <AppContent />
+        </UserProvider>
       </Router>
     </div>
   );
