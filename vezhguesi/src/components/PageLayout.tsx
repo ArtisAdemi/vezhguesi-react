@@ -64,13 +64,13 @@ const PageLayout: React.FC = () => {
             Logout
           </button>
         </div>
-        <Navbar />
+
       </aside>
 
       {/* Main Content */}
       <div className="flex-1 ml-64">
         {/* Navbar */}
-
+        <Navbar />
 
         {/* Main Content Area */}
         <main className="mt-12 border border-t-0 px-8 py-12"
