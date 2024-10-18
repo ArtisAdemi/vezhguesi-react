@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  // useLocation,
+  useLocation,
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import PageLayout from "./components/PageLayout";
@@ -19,20 +19,17 @@ import Singlebot from "./pages/Singlebot";
 import Signin from "./pages/Signin";
 import SingleReport from "./pages/SingleReport";
 
+
+
 function AppContent() {
-  // const location = useLocation();
+  const location = useLocation();
 
   return (
-    <div>
-      {location.pathname !== "/signup" &&
-        location.pathname !== "/verify-signup/" && <PageLayout />}
-      <div
-        className={`pl-[280px] pt-[110px] overflow-x-hidden ${location.pathname === "/signup" ||
-          location.pathname === "/verify-signup"
-          ? "pl-0 pt-0"
-          : ""
-          }`}
-      >
+    <div className="">
+      {location.pathname !== "/signup" && location.pathname !== "/verify-signup/"}
+
+      <div className={` ${location.pathname === "/signup" || location.pathname === "/verify-signup" ? "pl-0 pt-0" : ""}`}>
+
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/bots" element={<Bots />} />
@@ -49,7 +46,7 @@ function AppContent() {
           <Route path="/verify-signup/:token" element={<VerifyEmail />} />
         </Routes>
       </div>
-    // </div>
+    </div>
   );
 }
 
