@@ -32,19 +32,24 @@ function AppContent() {
       <div className={` ${location.pathname === "/signup" || location.pathname === "/verify-signup" ? "pl-0 pt-0" : ""}`}>
 
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/bots" element={<Bots />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/reports" element={<MyReports />} />
-          <Route path="/tools" element={<Tools />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/singlebot" element={<Singlebot />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/singlereport" element={<SingleReport />} />
+          <Route path="/" element={<PageLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="bots" element={<Bots />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/bots" element={<Bots />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/reports" element={<MyReports />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/singlebot" element={<Singlebot />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/singlereport" element={<SingleReport />} />
 
-          <Route path="/verify-signup/:token" element={<VerifyEmail />} />
+            <Route path="/verify-signup/:token" element={<VerifyEmail />} />
+          </Route>
         </Routes>
       </div>
     </div>
