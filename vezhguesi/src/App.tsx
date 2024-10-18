@@ -17,6 +17,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Singlebot from "./pages/Singlebot";
 import Signin from "./pages/Signin";
 import SingleReport from "./pages/SingleReport";
+import { UserProvider } from "./context/UserContext";
 
 function AppContent() {
   // const location = useLocation();
@@ -56,7 +57,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <AppContent />
+        <UserProvider>
+          <AppContent />
+        </UserProvider>
       </Router>
     </div>
   );
