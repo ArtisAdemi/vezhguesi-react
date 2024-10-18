@@ -73,7 +73,8 @@ const PageLayout: React.FC = () => {
 
 
         {/* Main Content Area */}
-        <main className="mt-12 border border-t-0 px-8 py-12">
+        <main className="mt-12 border border-t-0 px-8 py-12"
+          style={{ boxShadow: 'inset 0 6px 10px rgba(0, 0, 0, 0.15)' }}>
           <Outlet />
         </main>
       </div>
