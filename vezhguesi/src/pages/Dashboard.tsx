@@ -4,7 +4,6 @@ import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
 import PieChart from '../components/PieChart'
 
-
 // Transform mockSentimentData to the expected format
 const transformedData = mockSentimentData.map(item => {
     const positiveValue = item.data

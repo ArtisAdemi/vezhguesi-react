@@ -1,8 +1,10 @@
 import React from 'react';
 import { FaSearch, FaBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 const Navbar: React.FC = () => {
+    const { user } = useUser();
 
     const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ const Navbar: React.FC = () => {
                             alt="Profile"
                             className="w-10 h-10 rounded-full"
                         />
-                        <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/profile')}>Austin Robertson</span>
+                        <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/profile')}>{user?.userData?.firstName} {user?.userData?.lastName}</span>
                     </div>
                 </div>
             </header>
