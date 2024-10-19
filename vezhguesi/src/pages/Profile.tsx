@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import profile from "../assets/profile.jpg"
 import { useUser } from '../context/UserContext';
+import { UpdateUserDataRequest } from '../models/Auth';
+import AuthService from '../services/Auth';
 
 const Profile: React.FC = () => {
-    const { user } = useUser();
+    const { user, setUser } = useUser();
 
     const userData = user?.userData;
 
@@ -40,7 +42,13 @@ const Profile: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(formData);
+        const updatedUser: UpdateUserDataRequest = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            username: formData.username,
+        }
+
+        AuthService.updateUserData(updatedUser, user?.token || "", setUser);
     };
 
     return (

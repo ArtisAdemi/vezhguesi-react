@@ -63,3 +63,10 @@ export class UserData {
         this.phoneNumber = "";
     }
 }
+
+export interface UpdateUserDataRequest {
+    firstName: string;
+    lastName: string;
+    username: string;
+}
+
