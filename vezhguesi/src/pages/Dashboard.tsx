@@ -3,8 +3,6 @@ import LineChart from '../components/LineChart'
 import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
 import PieChart from '../components/PieChart'
-import { useUser } from '../context/UserContext'
-import Logout from '../components/Logout'
 
 // Transform mockSentimentData to the expected format
 const transformedData = mockSentimentData.map(item => {
@@ -23,15 +21,9 @@ const transformedData = mockSentimentData.map(item => {
 }).flat();
 
 const Dashboard: React.FC = () => {
-    const { user } = useUser();
 
     return (
         <div className='gap-4'>
-            {/* TESTING AREA */}
-            <h1>Hello {user?.userData.firstName}</h1>
-            <h1>Your Token: {user?.token}</h1>
-            <Logout />
-            {/* TESTING AREA */}
             <div style={{ height: '400px', width: '800px' }}>
                 <LineChart
                     data={data}

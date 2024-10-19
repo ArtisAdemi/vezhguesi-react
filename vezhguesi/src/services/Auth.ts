@@ -23,6 +23,11 @@ class AuthService {
     logout() {
         localStorage.removeItem("token");
     }
+
+    async getUserData(token: string): Promise<LoginResponse> {
+        const response = await axios.get(`${API_URL}/users/user-data`, { headers: { Authorization: `Bearer ${token}` } });
+        return response.data;
+    }
 }
 
 export default new AuthService();
