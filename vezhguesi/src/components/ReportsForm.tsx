@@ -38,8 +38,8 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
 
                     </div>
                 </form>
-                <button className='bg-red-600 text-white py-2 px-3 rounded-lg mr-4 hover:opacity-80 duration-300 hover:scale-105' onClick={closeModal}>Cancel</button>
-                <button className='bg-green-600 text-white py-2 px-3 rounded-lg hover:opacity-80 duration-300 hover:scale-105' onClick={closeModal}>Submit</button>
+                <button className='border border-black w-1/5 text-black py-2 px-3 rounded-lg mr-4 hover:opacity-80 duration-300 hover:scale-105' onClick={closeModal}>Cancel</button>
+                <button className='bg-[#0C7FDA] w-1/5 text-white py-2 px-3 rounded-lg hover:opacity-80 duration-300 hover:scale-105' onClick={closeModal}>Submit</button>
             </div>
         </div>
     )
