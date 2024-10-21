@@ -3,7 +3,7 @@ import LineChart from '../components/LineChart'
 import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
 import PieChart from '../components/PieChart'
-import { useAuth } from '../hooks/AuthProvider'
+import { useAuth } from '../hooks/useAuth'
 
 // Transform mockSentimentData to the expected format
 const transformedData = mockSentimentData.map(item => {

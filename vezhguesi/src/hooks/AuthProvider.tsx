@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useState, useEffect } from "react";
+import { createContext, PropsWithChildren, useState, useEffect } from "react";
 import { LoginRequest, UserData } from "../models/Auth";
 import AuthService from "../services/Auth";
 
@@ -11,7 +11,7 @@ type AuthContext = {
     handleLogout: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContext | undefined>(undefined);
+export const AuthContext = createContext<AuthContext | undefined>(undefined);
 
 type AuthProviderProps = PropsWithChildren;
 
@@ -60,11 +60,3 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         </AuthContext.Provider>
     );
 }
-
-export function useAuth() {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error("useAuth must be used within an AuthProvider");
-    }
-    return context;
-}  

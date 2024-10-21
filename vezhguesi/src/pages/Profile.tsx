@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import profile from "../assets/profile.jpg"
 import { UpdateUserDataRequest } from '../models/Auth';
 import AuthService from '../services/Auth';
-import { useAuth } from '../hooks/AuthProvider';
+import { useAuth } from '../hooks/useAuth';
 
 const Profile: React.FC = () => {
     const { currentUser, authToken, setCurrentUser } = useAuth();

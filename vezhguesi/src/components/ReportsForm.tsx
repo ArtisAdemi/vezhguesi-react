@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReportServices from "../services/Reports"
 import { Report } from '../models/Reports';
-import { useAuth } from '../hooks/AuthProvider';
+import { useAuth } from '../hooks/useAuth';
 import Swal from "sweetalert2";
 interface ReportsFormProps {
     closeModal: () => void;

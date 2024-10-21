@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { UserData } from "../models/Auth";
-import { useAuth } from "./AuthProvider";
+import { useAuth } from "./useAuth";
 import NotLoggedIn from "../components/NotLoggedIn";
 
 type ProtectedRouteProps = PropsWithChildren & {

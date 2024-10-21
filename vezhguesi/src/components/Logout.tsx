@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { useAuth } from '../hooks/AuthProvider';
+import { useAuth } from '../hooks/useAuth';
 
 const Logout: React.FC = () => {
     const { handleLogout } = useAuth();

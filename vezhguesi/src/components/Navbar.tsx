@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSearch, FaBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/AuthProvider';
+import { useAuth } from '../hooks/useAuth';
 
 const Navbar: React.FC = () => {
     const { currentUser } = useAuth();
