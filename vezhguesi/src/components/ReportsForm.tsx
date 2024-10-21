@@ -81,6 +81,9 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
                             type="text"
                             id='subject'
                             placeholder='Your subject' />
+                        {errors.subject && (
+                            <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                        )}
                     </div>
                     <div className='flex'>
                         <div className='flex flex-col mb-3 mr-2 w-1/2'>
