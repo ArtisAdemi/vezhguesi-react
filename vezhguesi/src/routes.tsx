@@ -13,6 +13,7 @@ import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import PageLayout from "./components/PageLayout";
 import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,12 @@ const router = createBrowserRouter([
             {
                 path: '/singlereport',
                 element: <SingleReport />
+            },
+            {
+                path: '/admin',
+                element: <ProtectedRoute allowedRoles={['admin']} >
+                    <Admin />
+                </ProtectedRoute>
             }
         ]
     },
