@@ -32,6 +32,7 @@ const Navbar: React.FC = () => {
                             src="https://via.placeholder.com/40"
                             alt="Profile"
                             className="w-10 h-10 rounded-full"
+                            loading="lazy"
                         />
                         <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/profile')}>{currentUser?.firstName} {currentUser?.lastName}</span>
                     </div>

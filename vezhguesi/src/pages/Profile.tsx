@@ -64,7 +64,7 @@ const Profile: React.FC = () => {
                 <div className='leftSide w-[45%] px-[6%] border-2 border-l-0 border-t-0 border-b-0 flex flex-col py-12 justify-center'>
                     <div className='flex flex-col items-center mb-4'>
                         <h1 className='text-[#6C6C6C] text-3xl mb-4'>Profile</h1>
-                        <img src={profile} alt="" />
+                        <img src={profile} alt="" loading="lazy" />
                         <h1 className='font-bold text-3xl'>{userData ? `${userData.firstName} ${userData.lastName}` : 'First Last Name'}</h1>
                         <h1 className='text-[#6C6C6C] text-xl'>{userData ? userData.email : 'Email'}</h1>
                     </div>

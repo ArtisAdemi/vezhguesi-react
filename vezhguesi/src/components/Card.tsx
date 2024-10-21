@@ -25,6 +25,7 @@ const Card: React.FC<CardProps> = ({
         src={image}
         alt={title}
         className="w-full h-48 object-cover rounded-t-lg"
+        loading="lazy"
       />
       <h2 className="text-lg font-semibold mt-2">{title}</h2>
       <p className="text-gray-600 mt-1">{description}</p>
@@ -34,6 +35,7 @@ const Card: React.FC<CardProps> = ({
             src={profileImage}
             alt="Profile"
             className="w-10 h-10 rounded-full"
+            loading="lazy"
           />
           <div className="ml-2">
             <p className="text-sm font-medium">{author}</p>

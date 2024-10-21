@@ -21,6 +21,7 @@ const Singlebot: React.FC = () => {
           src={imgsport}
           alt="Main visual"
           className="w-full h-[400px] object-cover"
+          loading="lazy"
         />
         <p className="p-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eveniet
@@ -52,6 +53,7 @@ const Singlebot: React.FC = () => {
           src={imgsport}
           alt="Main visual"
           className="w-full h-[400px] object-cover"
+          loading="lazy"
         />
         <p className="p-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eveniet

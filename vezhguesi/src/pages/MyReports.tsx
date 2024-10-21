@@ -63,6 +63,7 @@ const MyReports: React.FC = () => {
                     src={imgsport} // Replace this with the path to your actual image
                     alt={`Report ${report}`}
                     className="w-full h-full object-cover rounded"
+                    loading="lazy"
                   />
                 </div>
 
