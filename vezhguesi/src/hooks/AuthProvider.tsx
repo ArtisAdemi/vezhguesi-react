@@ -21,7 +21,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        if (token) {
+        if (token && token !== null && token !== "undefined") {
             setAuthToken(token);
             async function getCurrentUserData() {
                 if (token) { // Ensure token is not null
@@ -33,7 +33,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
         }
 
-    }, [])
+    }, [token])
 
     async function handleLogin(req: LoginRequest) {
         try {

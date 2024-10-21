@@ -19,11 +19,6 @@ class AuthService {
         return response.data;
     }
 
-    logout() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userData");
-    }
-
     async getUserData(token: string): Promise<UserData> {
         const response = await axios.get(`${API_URL}/users/user-data`, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
