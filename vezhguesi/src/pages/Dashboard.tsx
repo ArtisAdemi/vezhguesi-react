@@ -22,7 +22,6 @@ const transformedData = mockSentimentData.map(item => {
 
 const Dashboard: React.FC = () => {
 
-
     return (
         <div className='gap-4'>
             {/* TESTING AREA */}

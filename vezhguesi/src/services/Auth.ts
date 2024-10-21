@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginRequest, LoginResponse, SignupRequest, UpdateUserDataRequest, VerifyEmailRequest } from "../models/Auth";
+import { LoginRequest, LoginResponse, SignupRequest, UpdateUserDataRequest, UserData, VerifyEmailRequest } from "../models/Auth";
 import { API_URL } from "./backendUrl";
 
 class AuthService {
@@ -24,18 +24,18 @@ class AuthService {
         localStorage.removeItem("userData");
     }
 
-    async getUserData(token: string): Promise<LoginResponse> {
+    async getUserData(token: string): Promise<UserData> {
         const response = await axios.get(`${API_URL}/users/user-data`, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
     }
 
-    async updateUserData(req: UpdateUserDataRequest, token: string, setUser: (user: LoginResponse) => void): Promise<void> {
+    async updateUserData(req: UpdateUserDataRequest, token: string, setUser: (user: UserData) => void): Promise<void> {
         const response = await axios.put(`${API_URL}/auth/update`, req, { headers: { Authorization: `Bearer ${token}` } });
         const newUserData: LoginResponse = {
             token: token,
             userData: response.data
         }
-        setUser(newUserData);
+        setUser(newUserData.userData);
         return response.data;
     }
 }

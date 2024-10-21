@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import profile from "../assets/profile.jpg"
-import { useUser } from '../context/UserContext';
 import { UpdateUserDataRequest } from '../models/Auth';
 import AuthService from '../services/Auth';
+import { useAuth } from '../hooks/AuthProvider';
 
 const Profile: React.FC = () => {
-    const { user, setUser } = useUser();
+    const { currentUser, authToken, setCurrentUser } = useAuth();
 
-    const userData = user?.userData;
+    const userData = currentUser;
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -48,7 +48,7 @@ const Profile: React.FC = () => {
             username: formData.username,
         }
 
-        AuthService.updateUserData(updatedUser, user?.token || "", setUser);
+        AuthService.updateUserData(updatedUser, authToken || "", setCurrentUser);
     };
 
     return (
