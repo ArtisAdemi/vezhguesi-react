@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReportServices from "../services/Reports"
 import { Report } from '../models/Reports';
 import { useAuth } from '../hooks/AuthProvider';
-
+import Swal from "sweetalert2";
 interface ReportsFormProps {
     closeModal: () => void;
 }
@@ -59,10 +59,17 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
             if (currentUser && authToken) {
                 await ReportServices.createReport(reportsData, authToken);
             }
-            alert("Added a Report successful!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Report created successfully!',
+            });
         } catch (error) {
             console.error("Report error:", error);
-            alert("Report failed. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error creating report!',
+                text: 'Please try again.',
+            });
         }
     };
 

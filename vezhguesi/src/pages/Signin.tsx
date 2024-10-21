@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import google from "../assets/google.jpg";
 import { LoginRequest } from "../models/Auth";
 import { useAuth } from "../hooks/AuthProvider";
+import Swal from "sweetalert2";
 
 const Signin: React.FC = () => {
   const { handleLogin } = useAuth();
@@ -28,6 +29,11 @@ const Signin: React.FC = () => {
       navigate("/");
     } catch (error) {
       console.error("Failed to sign in:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Signin failed',
+        text: 'Please try again.',
+      });
     }
   };
 
