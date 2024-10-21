@@ -49,7 +49,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
 
     async function handleLogout() {
-        console.log("Logging out");
         setAuthToken(null);
         setCurrentUser(null);
         localStorage.removeItem("token");
