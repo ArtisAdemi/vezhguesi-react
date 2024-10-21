@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import ReportServices from "../services/Reports"
 import { Report } from '../models/Reports';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../hooks/AuthProvider';
 import Swal from "sweetalert2";
-
 interface ReportsFormProps {
     closeModal: () => void;
 }
 
 const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
 
-    const { user } = useUser();
+    const { currentUser, authToken } = useAuth();
 
     const [reportsData, setReportsData] = useState<Report>({
         subject: "",
@@ -57,8 +56,8 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
             return;
         }
         try {
-            if (user && user.token) {
-                await ReportServices.createReport(reportsData, user.token);
+            if (currentUser && authToken) {
+                await ReportServices.createReport(reportsData, authToken);
             }
             Swal.fire({
                 icon: 'success',
