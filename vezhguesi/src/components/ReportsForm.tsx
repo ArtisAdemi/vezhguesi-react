@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReportServices from "../services/Reports"
 import { Report } from '../models/Reports';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../hooks/AuthProvider';
 
 interface ReportsFormProps {
     closeModal: () => void;
@@ -9,7 +9,7 @@ interface ReportsFormProps {
 
 const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
 
-    const { user } = useUser();
+    const { currentUser, authToken } = useAuth();
 
     const [reportsData, setReportsData] = useState<Report>({
         subject: "",
@@ -56,8 +56,8 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
             return;
         }
         try {
-            if (user && user.token) {
-                await ReportServices.createReport(reportsData, user.token);
+            if (currentUser && authToken) {
+                await ReportServices.createReport(reportsData, authToken);
             }
             alert("Added a Report successful!");
         } catch (error) {

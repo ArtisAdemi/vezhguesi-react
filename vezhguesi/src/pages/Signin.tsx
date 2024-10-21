@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import google from "../assets/google.jpg";
 import { LoginRequest } from "../models/Auth";
-import AuthService from "../services/Auth";
-import { useUser } from "../context/UserContext";
+import { useAuth } from "../hooks/AuthProvider";
 
 const Signin: React.FC = () => {
+  const { handleLogin } = useAuth();
   const [loginData, setLoginData] = useState<LoginRequest>({
     email: "",
     password: "",
   });
 
-  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +24,7 @@ const Signin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await AuthService.login(loginData);
-      localStorage.setItem("token", response.token);
-      setUser(response);
+      await handleLogin(loginData);
       navigate("/");
     } catch (error) {
       console.error("Failed to sign in:", error);
