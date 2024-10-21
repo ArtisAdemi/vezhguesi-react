@@ -62,8 +62,6 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Report created successfully!',
-                showConfirmButton: false,
-                timer: 1500
             });
         } catch (error) {
             console.error("Report error:", error);

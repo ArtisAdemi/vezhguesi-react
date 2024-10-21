@@ -15,10 +15,9 @@ const VerifyEmail: React.FC = () => {
           Swal.fire({
             icon: 'success',
             title: 'Email verified successfully!',
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true,
           });
-          navigate("/"); // Redirect to dashboard
+          navigate("/signin"); // Redirect to dashboard
         } catch (error) {
           console.error("Verification failed:", error);
           Swal.fire({

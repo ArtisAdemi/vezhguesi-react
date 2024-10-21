@@ -62,8 +62,7 @@ const Signup: React.FC = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Signup successful!',
-                showConfirmButton: false,
-                timer: 1500
+                text: 'An email has been sent into your inbox, in order to verify your account.'
             });
         } catch (error) {
             console.error("Signup error:", error);
