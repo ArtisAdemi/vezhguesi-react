@@ -15,9 +15,9 @@ export default function ProtectedRoute({ allowedRoles, children }: ProtectedRout
     }
 
     if (currentUser === null || (allowedRoles && !allowedRoles.includes(currentUser.role))) {
-        if (currentUser === null) {
-            return <NotLoggedIn />
-        }
+        // if (currentUser === null) {
+        //     return <NotLoggedIn />
+        // }
         return <div>Permission denied</div>
     }
 
