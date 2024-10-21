@@ -55,7 +55,6 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
             setErrors(validationErrors);
             return;
         }
-        console.log("formData", reportsData)
         try {
             if (user && user.token) {
                 await ReportServices.createReport(reportsData, user.token);
