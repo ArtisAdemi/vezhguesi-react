@@ -4,6 +4,7 @@ import google from "../assets/google.jpg";
 import { LoginRequest } from "../models/Auth";
 import AuthService from "../services/Auth";
 import { useUser } from "../context/UserContext";
+import Swal from "sweetalert2";
 
 const Signin: React.FC = () => {
   const [loginData, setLoginData] = useState<LoginRequest>({
@@ -31,6 +32,11 @@ const Signin: React.FC = () => {
       navigate("/");
     } catch (error) {
       console.error("Failed to sign in:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Signin failed',
+        text: 'Please try again.',
+      });
     }
   };
 

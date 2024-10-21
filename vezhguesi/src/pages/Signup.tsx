@@ -3,6 +3,7 @@ import AuthService from "../services/Auth";
 import { SignupRequest } from "../models/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import google from "../assets/google.jpg";
+import Swal from "sweetalert2";
 
 const Signup: React.FC = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -58,10 +59,19 @@ const Signup: React.FC = () => {
         }
         try {
             await AuthService.signup(signupData);
-            alert("Signup successful!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Signup successful!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (error) {
             console.error("Signup error:", error);
-            alert("Signup failed. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Signup failed',
+                text: 'Please try again.',
+            });
         }
     };
 
