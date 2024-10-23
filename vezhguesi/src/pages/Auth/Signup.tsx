@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import AuthService from "../services/Auth";
-import { SignupRequest } from "../models/Auth";
+import AuthService from "../../services/Auth";
+import { SignupRequest } from "../../models/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import google from "../assets/google.jpg";
+import google from "../../assets/google.jpg";
 import Swal from "sweetalert2";
 
 const Signup: React.FC = () => {
