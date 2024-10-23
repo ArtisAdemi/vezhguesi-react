@@ -10,20 +10,8 @@ const LandingNavbar: React.FC = () => {
     navigate(path);
   };
   return (
-    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 rounded-lg mt-6 flex justify-between items-center py-4 px-4 max-w-7xl w-full bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-white z-50 border border-white border-opacity-30 shadow-lg">
+    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 rounded-lg mt-6 flex justify-between items-center py-4 px-4 max-w-7xl w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border border-white border-opacity-20 text-white z-50  shadow-lg">
       <div className="text-2xl font-bold">VEZHGUESI</div>
-
-      <div className="hidden md:flex space-x-4 text-sm md:text-lg">
-        <a href="#product" className="hover:text-gray-300">
-          Product
-        </a>
-        <a href="#pricing" className="hover:text-gray-300">
-          Pricing
-        </a>
-        <a href="#clients" className="hover:text-gray-300">
-          Clients
-        </a>
-      </div>
 
       <div className="hidden md:flex space-x-4">
         <button
