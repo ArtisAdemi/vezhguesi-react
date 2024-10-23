@@ -19,84 +19,84 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <ProtectedRoute allowedRoles={["admin", "user"]}>
-        <PageLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
+    {
         path: "/",
-        element: <Dashboard />,
-      },
-      {
-        path: "/categories",
-        element: <Categories />,
-      },
-      {
-        path: "/bots",
-        element: <Bots />,
-      },
-      {
-        path: "/reports",
-        element: <MyReports />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/tools",
-        element: <Tools />,
-      },
-      {
-        path: "/favorites",
-        element: <Favorites />,
-      },
-      {
-        path: "singlebot",
-        element: <Singlebot />,
-      },
-      {
-        path: "/singlereport",
-        element: <SingleReport />,
-      },
-      {
-        path: "/admin",
+        element: <LandingPage />,
+    },
+    {
+        path: "/dashboard",
         element: (
-          <ProtectedRoute allowedRoles={["admin"]}>
-            <Admin />
-          </ProtectedRoute>
+            <ProtectedRoute allowedRoles={["admin", "user"]}>
+                <PageLayout />
+            </ProtectedRoute>
         ),
-      },
-    ],
-  },
-  {
-    path: "/signin",
-    element: <Signin />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/verify-signup",
-    element: <VerifyEmail />,
-  },
-  {
-    path: "/forgot-password",
-    element: <ForgotPw />,
-  },
-  {
-    path: "/reset-password/:token",
-    element: <ResetPassword />,
-  },
-  {
-    path: "/landingpage",
-    element: <LandingPage />,
-  },
+        children: [
+            {
+                path: "", // Relative path for the dashboard
+                element: <Dashboard />,
+            },
+            {
+                path: "categories", // Relative path for categories
+                element: <Categories />,
+            },
+            {
+                path: "bots", // Relative path for bots
+                element: <Bots />,
+            },
+            {
+                path: "reports", // Relative path for reports
+                element: <MyReports />,
+            },
+            {
+                path: "profile", // Relative path for profile
+                element: <Profile />,
+            },
+            {
+                path: "tools", // Relative path for tools
+                element: <Tools />,
+            },
+            {
+                path: "favorites", // Relative path for favorites
+                element: <Favorites />,
+            },
+            {
+                path: "singlebot", // Relative path for singlebot
+                element: <Singlebot />,
+            },
+            {
+                path: "singlereport", // Relative path for singlereport
+                element: <SingleReport />,
+            },
+            {
+                path: "admin", // Relative path for admin
+                element: (
+                    <ProtectedRoute allowedRoles={["admin"]}>
+                        <Admin />
+                    </ProtectedRoute>
+                ),
+            },
+        ],
+    },
+    {
+        path: "/signin",
+        element: <Signin />,
+    },
+    {
+        path: "/signup",
+        element: <Signup />,
+    },
+    {
+        path: "/verify-signup",
+        element: <VerifyEmail />,
+    },
+    {
+        path: "/forgot-password",
+        element: <ForgotPw />,
+    },
+    {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
+    },
 ]);
 
 export default router;
