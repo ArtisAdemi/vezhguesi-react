@@ -4,6 +4,7 @@ import { SignupRequest } from "../../models/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import google from "../../assets/google.jpg";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Signup: React.FC = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -86,9 +87,9 @@ const Signup: React.FC = () => {
                     <p className="text-sm mb-2 text-center">
                         If you already have an account, <br />
                         you can{" "}
-                        <a href="/signin" className="text-blue-600 font-semibold">
+                        <Link to="/signin" className="text-blue-600 font-semibold">
                             Log in!
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>

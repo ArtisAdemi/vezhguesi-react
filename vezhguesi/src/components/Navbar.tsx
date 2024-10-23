@@ -35,7 +35,7 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
                             className="w-10 h-10 rounded-full"
                             loading="lazy"
                         />
-                        <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/profile')}>{currentUser?.firstName} {currentUser?.lastName}</span>
+                        <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/dashboard/profile')}>{currentUser?.firstName} {currentUser?.lastName}</span>
                     </div>
                 </div>
             </header>
