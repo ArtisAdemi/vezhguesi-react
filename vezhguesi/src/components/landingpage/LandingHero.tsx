@@ -1,5 +1,5 @@
 import React from "react";
-import image1 from "../assets/image 1.jpg";
+import image1 from "../../assets/image 1.jpg";
 const Landinghero: React.FC = () => {
   return (
     <div className="relative h-screen">

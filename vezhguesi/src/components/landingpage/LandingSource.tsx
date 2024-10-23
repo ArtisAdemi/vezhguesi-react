@@ -1,6 +1,6 @@
 import React from "react";
-import svg from "../assets/SVG.svg";
-import hero2 from "../assets/rrot.jpg";
+import svg from "../../assets/SVG.svg";
+import hero2 from "../../assets/rrot.jpg";
 
 const LandingSource: React.FC = () => {
   return (

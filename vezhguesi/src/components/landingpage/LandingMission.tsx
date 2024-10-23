@@ -1,5 +1,5 @@
 import React from "react";
-import hero4 from "../assets/hero4.jpg";
+import hero4 from "../../assets/hero4.jpg";
 
 const LandingMission: React.FC = () => {
   return (

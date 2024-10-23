@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import LandingNavbar from "../landingpage/LandingNavbar";
+import LandingNavbar from "../components/landingpage/LandingNavbar";
 
-import LandingIntroduction from "../landingpage/LandingIntroduction";
-import LandingSource from "../landingpage/LandingSource";
-import LandingAbout from "../landingpage/LandingAbout";
-import LandingCTA from "../landingpage/LandingCTA";
-import LandingMission from "../landingpage/LandingMission";
-import LandingPricing from "../landingpage/LandingPricing";
-import LandingFooter from "../landingpage/LandingFooter";
-import Landinghero from "../landingpage/LandingHero";
+import LandingIntroduction from "../components/landingpage/LandingIntroduction";
+import LandingSource from "../components/landingpage/LandingSource";
+import LandingAbout from "../components/landingpage/LandingAbout";
+import LandingCTA from "../components/landingpage/LandingCTA";
+import LandingMission from "../components/landingpage/LandingMission";
+import LandingPricing from "../components/landingpage/LandingPricing";
+import LandingFooter from "../components/landingpage/LandingFooter";
+import Landinghero from "../components/landingpage/LandingHero";
 
 const LandingPage: React.FC = () => {
   const [] = useState(false);

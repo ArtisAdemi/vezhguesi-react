@@ -1,5 +1,5 @@
 import React from "react";
-import homejpg from "../assets/Home (3).jpg";
+import homejpg from "../../assets/Home (3).jpg";
 
 const LandingAbout: React.FC = () => {
   return (
