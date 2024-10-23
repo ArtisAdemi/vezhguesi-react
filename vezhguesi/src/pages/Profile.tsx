@@ -150,7 +150,7 @@ const Profile: React.FC = () => {
                                 name="email"
                                 id="email"
                                 className='border-2 border-[#E5E5E5] rounded-md py-1'
-                                disabled={!isEditing}
+                                disabled={true}
                                 onChange={handleChange}
                             />
                         </div>
