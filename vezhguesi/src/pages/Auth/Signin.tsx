@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import google from "../assets/google.jpg";
-import { LoginRequest } from "../models/Auth";
-import AuthService from "../services/Auth";
-import { useUser } from "../context/UserContext";
+import google from "../../assets/google.jpg";
+import { LoginRequest } from "../../models/Auth";
+import { useAuth } from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Signin: React.FC = () => {
+  const { handleLogin } = useAuth();
   const [loginData, setLoginData] = useState<LoginRequest>({
     email: "",
     password: "",
   });
 
-  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,12 +25,15 @@ const Signin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await AuthService.login(loginData);
-      localStorage.setItem("token", response.token);
-      setUser(response);
+      await handleLogin(loginData);
       navigate("/");
     } catch (error) {
       console.error("Failed to sign in:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Signin failed',
+        text: 'Please try again.',
+      });
     }
   };
 
@@ -106,7 +109,7 @@ const Signin: React.FC = () => {
         <div className="mt-4 ">
           <div className="border p-4 flex justify-between items-center cursor-pointer rounded-md hover:shadow-lg space-x-2">
             <span>Sign in with Google</span>
-            <img src={google} alt="Google logo" className="w-6 h-6" />
+            <img src={google} alt="Google logo" className="w-6 h-6" loading="lazy" />
           </div>
         </div>
       </div>

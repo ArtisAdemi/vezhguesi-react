@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AuthService from "../services/Auth";
+import Swal from "sweetalert2";
 
 const VerifyEmail: React.FC = () => {
   const navigate = useNavigate();
@@ -8,18 +9,29 @@ const VerifyEmail: React.FC = () => {
 
   useEffect(() => {
     const verifyEmail = async () => {
-      console.log("token", token);
       if (token) {
         try {
           await AuthService.verifyEmail({ token });
-          alert("Email verified successfully!");
-          navigate("/"); // Redirect to dashboard
+          Swal.fire({
+            icon: 'success',
+            title: 'Email verified successfully!',
+            showConfirmButton: true,
+          });
+          navigate("/signin"); // Redirect to dashboard
         } catch (error) {
           console.error("Verification failed:", error);
-          alert("Email verification failed. Please try again.");
+          Swal.fire({
+            icon: 'error',
+            title: 'Email verification failed!',
+            text: 'Please try again.',
+          });
         }
       } else {
-        alert("Invalid verification link.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid verification link!',
+          text: 'Please try again.',
+        });
       }
     };
 

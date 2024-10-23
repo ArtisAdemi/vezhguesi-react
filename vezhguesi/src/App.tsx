@@ -1,68 +1,16 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  // useLocation,
-} from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-// import PageLayout from "./components/PageLayout";
-import Bots from "./pages/Bots";
-import Categories from "./pages/Categories";
-import MyReports from "./pages/MyReports";
-import Tools from "./pages/Tools";
-import Favorites from "./pages/Favorites";
-import Signup from "./pages/Signup";
-import VerifyEmail from "./pages/VerifyEmail";
-import Singlebot from "./pages/Singlebot";
-import Signin from "./pages/Signin";
-import SingleReport from "./pages/SingleReport";
-import LandingPage from "./pages/LandingPage";
-import { UserProvider } from "./context/UserContext";
-
-function AppContent() {
-  // const location = useLocation();
-
-  return (
-    <div>
-      {/* {location.pathname !== "/signup" &&
-        location.pathname !== "/verify-signup/" && <PageLayout />}
-      <div
-        className={`pl-[280px] pt-[110px] overflow-x-hidden ${
-          location.pathname === "/signup" ||
-          location.pathname === "/verify-signup"
-            ? "pl-0 pt-0"
-            : ""
-        }`} */}
-      {/* > */}
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/bots" element={<Bots />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/reports" element={<MyReports />} />
-        <Route path="/tools" element={<Tools />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/singlebot" element={<Singlebot />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/singlereport" element={<SingleReport />} />
-        <Route path="/landingpage" element={<LandingPage />} />
-
-        <Route path="/verify-signup/:token" element={<VerifyEmail />} />
-      </Routes>
-    </div>
-    // </div>
-  );
-}
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
+import AuthProvider from "./hooks/AuthProvider";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <UserProvider>
-          <AppContent />
-        </UserProvider>
-      </Router>
+      {/* <Router> */}
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+      {/* </Router> */}
     </div>
   );
 }

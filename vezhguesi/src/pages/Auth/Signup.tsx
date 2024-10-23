@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import AuthService from "../services/Auth";
-import { SignupRequest } from "../models/Auth";
+import AuthService from "../../services/Auth";
+import { SignupRequest } from "../../models/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import google from "../assets/google.jpg";
+import google from "../../assets/google.jpg";
+import Swal from "sweetalert2";
 
 const Signup: React.FC = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -58,10 +59,18 @@ const Signup: React.FC = () => {
         }
         try {
             await AuthService.signup(signupData);
-            alert("Signup successful!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Signup successful!',
+                text: 'An email has been sent into your inbox, in order to verify your account.'
+            });
         } catch (error) {
             console.error("Signup error:", error);
-            alert("Signup failed. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Signup failed',
+                text: 'Please try again.',
+            });
         }
     };
 
@@ -218,7 +227,7 @@ const Signup: React.FC = () => {
                 <div className="mt-4 ">
                     <div className="border p-4 flex justify-between items-center cursor-pointer rounded-md hover:shadow-lg space-x-2 w-full">
                         <span>Sign in with Google</span>
-                        <img src={google} alt="Google logo" className="w-6 h-6" />
+                        <img src={google} alt="Google logo" className="w-6 h-6" loading="lazy" />
                     </div>
                 </div>
             </div>

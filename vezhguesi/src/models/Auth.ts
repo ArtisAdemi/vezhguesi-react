@@ -33,16 +33,7 @@ export interface LoginRequest {
 
 export interface LoginResponse {
     token: string;
-    userData: {
-        avatarImgUrl: string;
-        email: string;
-        firstName: string;
-        id: number;
-        lastName: string;
-        profileId: number;
-        role: string;
-        username: string;
-    };
+    userData: UserData;
 }
 
 export class UserData {
@@ -52,6 +43,7 @@ export class UserData {
     lastName: string;
     username: string;
     phoneNumber: string;
+    role: string;
 
 
     constructor() {
@@ -61,5 +53,13 @@ export class UserData {
         this.lastName = "";
         this.username = "";
         this.phoneNumber = "";
+        this.role = "";
     }
 }
+
+export interface UpdateUserDataRequest {
+    firstName: string;
+    lastName: string;
+    username: string;
+}
+

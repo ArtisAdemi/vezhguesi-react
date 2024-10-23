@@ -4,10 +4,12 @@ import PieChart from "../components/PieChart";
 import LineChart from "../components/LineChart";
 import mockData from "../assets/data/mockData";
 import mockSentimentData from "../assets/data/mockSentimentData";
+import ReportsForm from "../components/ReportsForm";
 
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
   const [selectedView, setSelectedView] = useState<string>(viewOptions[0]);
+  const [reportFormModal, setReportFormModal] = useState(false);
 
   const changeView = () => {
     setSelectedView((prevView) =>
@@ -37,7 +39,8 @@ const MyReports: React.FC = () => {
       {/* Header section */}
       <div className="flex flex-row justify-between p-10 items-center">
         <h1 className="text-4xl text-[#5D7285] font-bold mb-4">MyReports</h1>
-        <button className="p-3 px-8 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
+        <button onClick={() => setReportFormModal(true)}
+          className="p-3 px-8 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
           + New Report
         </button>
       </div>
@@ -60,6 +63,7 @@ const MyReports: React.FC = () => {
                     src={imgsport} // Replace this with the path to your actual image
                     alt={`Report ${report}`}
                     className="w-full h-full object-cover rounded"
+                    loading="lazy"
                   />
                 </div>
 
@@ -116,6 +120,7 @@ const MyReports: React.FC = () => {
           </div>
         </div>
       </div>
+      {reportFormModal && <ReportsForm closeModal={() => setReportFormModal(false)} />}
     </div>
   );
 };

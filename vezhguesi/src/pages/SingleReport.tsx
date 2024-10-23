@@ -47,6 +47,7 @@ const SingleReport: React.FC = () => {
           src={imgsport}
           alt="Sport Image"
           className="w-full md:w-2/3 lg:w-1/1 mb-6 rounded-lg shadow-lg"
+          loading="lazy"
         />
         <div className="text-center max-w-3xl px-4">
           <h1 className="font-semibold text-3xl md:text-4xl mb-4">
@@ -74,6 +75,7 @@ const SingleReport: React.FC = () => {
             <img
               src={imgsport}
               className="w-1/2 md:w-1/4 rounded-lg shadow-md"
+              loading="lazy"
             />
             <p className="text-start text-gray-600 text-base leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
