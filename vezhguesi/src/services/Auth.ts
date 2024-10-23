@@ -33,6 +33,18 @@ class AuthService {
         setUser(newUserData.userData);
         return response.data;
     }
+
+    async forgotPassword(email: string): Promise<void> {
+        const response = await axios.post(`${API_URL}/auth/forgot-password`, { email });
+        return response.data;
+    }
+
+    async resetPassword(token: string, password: string, confirmPassword: string): Promise<void> {
+        const newPassword = password;
+        const confirmNewPassword = confirmPassword;
+        const response = await axios.put(`${API_URL}/auth/reset-password/${token}`, { newPassword, confirmNewPassword });
+        return response.data;
+    }
 }
 
 export default new AuthService();

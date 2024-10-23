@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import google from "../assets/google.jpg";
-import { LoginRequest } from "../models/Auth";
-import { useAuth } from "../hooks/useAuth";
+import google from "../../assets/google.jpg";
+import { LoginRequest } from "../../models/Auth";
+import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Signin: React.FC = () => {
