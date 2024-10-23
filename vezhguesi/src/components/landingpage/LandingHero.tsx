@@ -15,7 +15,7 @@ const Landinghero: React.FC = () => {
           Empower Your Future <br />
           with Crypteez’s Trading Platform
         </h1>
-        <button className="px-6 py-3 bg-transparent w-1/2 sm:w-1/3 md:w-1/4 text-[#E0E0E0]  border border-white rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl">
+        <button className="px-6 py-3 bg-transparent w-1/2 sm:w-1/3 md:w-1/6 text-[#E0E0E0]  border border-white rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl">
           Try Vezhguesi
         </button>
       </div>
