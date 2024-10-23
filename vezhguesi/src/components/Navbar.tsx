@@ -26,7 +26,7 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
                     />
                     <FaSearch className="text-gray-500 ml-2" />
                 </div>
-                <div className="hidden md:flex items-center space-x-4">
+                <div className="flex items-center space-x-4">
                     <FaBell className="text-gray-500" />
                     <div className="flex items-center space-x-2">
                         <img
