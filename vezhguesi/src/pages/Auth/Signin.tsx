@@ -4,6 +4,7 @@ import google from "../../assets/google.jpg";
 import { LoginRequest } from "../../models/Auth";
 import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Signin: React.FC = () => {
   const { handleLogin } = useAuth();
@@ -26,7 +27,7 @@ const Signin: React.FC = () => {
     e.preventDefault();
     try {
       await handleLogin(loginData);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Failed to sign in:", error);
       Swal.fire({
@@ -46,12 +47,12 @@ const Signin: React.FC = () => {
         <p className="text-sm text-center mb-4">
           If you don’t have an account, <br />
           you can{" "}
-          <a
-            href="/signup"
+          <Link
+            to="/signup"
             className="text-blue-600 font-semibold hover:underline"
           >
             Register Here!
-          </a>
+          </Link>
         </p>
       </div>
 
@@ -85,12 +86,12 @@ const Signin: React.FC = () => {
 
           {/* Forgot Password link */}
           <div className="flex justify-between w-full mb-6">
-            <a
-              href="/forgot-password"
+            <Link
+              to="/forgot-password"
               className="text-sm text-blue-600 hover:underline"
             >
               Forgot Password?
-            </a>
+            </Link>
           </div>
 
           {/* Sign In Button */}
