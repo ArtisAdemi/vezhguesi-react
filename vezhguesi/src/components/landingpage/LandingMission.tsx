@@ -34,9 +34,9 @@ const LandingMission: React.FC = () => {
       </div>
 
       {/* Section Below Card */}
-      <div className="absolute bottom-1 p-16 w-full flex flex-col md:py-32 items-center">
+      <div className="absolute bottom-1 p-16 w-full flex flex-col items-center">
         {/* Icons and Text */}
-        <div className="flex flex-row md:flex-row justify-center items-center mt-20 space-y-10 md:space-y-0 md:space-x-12">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-20 space-y-10 md:space-y-0 md:space-x-12">
           {/* First Card */}
           <div className="flex flex-col items-center">
             <img src={svg} alt="Device Icon" className="w-16 h-16" />
@@ -62,7 +62,7 @@ const LandingMission: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-row md:flex-row justify-center items-center mt-14 space-y-10 md:space-y-0 md:space-x-12">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-14 space-y-10 md:space-y-0 md:space-x-12">
           <div className="flex flex-col items-center">
             <img src={svg} alt="Custom Icon 3" className="w-16 h-16" />
             <h1 className="text-[#E0E0E0] font-semibold text-2xl mt-4">
@@ -75,7 +75,7 @@ const LandingMission: React.FC = () => {
           </div>
 
           {/* Fourth Card */}
-          <div className="flex flex-col space-x-0 items-center">
+          <div className="flex flex-col items-center">
             <img src={svg} alt="Custom Icon 4" className="w-16 h-16" />
             <h1 className="text-[#E0E0E0] font-semibold text-2xl mt-4">
               Real-time Collaboration
