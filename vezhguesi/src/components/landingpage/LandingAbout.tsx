@@ -1,9 +1,10 @@
 import React from "react";
 import homejpg from "../../assets/Home (3).jpg";
+import Charts from "./Charts";
 
 const LandingAbout: React.FC = () => {
   return (
-    <section className="w-full bg-[#060606] text-white py-20 md:py-40">
+    <div className="w-full justify-between bg-[#060606] text-white py-20 md:py-40">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between space-x-32 items-center">
         <div className="md:w-1/3 mb-10 md:mb-0 flex flex-col justify-center">
           <p className="text-base text-[#E0E0E0] md:text-lg mb-4 leading-[1.3]">
@@ -25,17 +26,10 @@ const LandingAbout: React.FC = () => {
         </div>
 
         <div className="relative flex items-center justify-center w-full md:w-2/3">
-          <img
-            src={homejpg}
-            alt="Additional Features"
-            className="rounded-lg shadow-lg object-cover"
-            style={{
-              width: "100%",
-            }}
-          />
+          <Charts />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
