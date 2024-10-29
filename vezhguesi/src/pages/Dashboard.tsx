@@ -28,23 +28,23 @@ const Dashboard: React.FC = () => {
         <div className='gap-4'>
             {/* TESTING AREA */}
             <h1>Hello {currentUser?.firstName}</h1>
-            <h1>Your Token: {authToken}</h1>
+            <h1 className='hidden md:block'>Your Token: {authToken}</h1>
             {/* TESTING AREA */}
-            <div style={{ height: '400px', width: '800px' }}>
+            <div className='h-[400px] w-[100%] md:h-[400px] md:w-[800px]'>
                 <LineChart
                     data={data}
                     xAxisLabel="Month"
                     yAxisLabel="Mentions"
                 />
             </div>
-            <div style={{ height: '400px', width: '800px' }}>
+            <div className='h-[400px] w-[100%] md:h-[400px] md:w-[800px]'>
                 <LineChart
                     data={mockSentimentData}
                     xAxisLabel="Month"
                     yAxisLabel="Sentiment"
                 />
             </div>
-            <div style={{ height: '400px', width: '400px' }}>
+            <div className='h-[400px] w-[400px] mx-auto md:mx-0'>
                 <PieChart data={transformedData} />
             </div>
         </div>

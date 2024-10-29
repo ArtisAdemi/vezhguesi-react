@@ -37,7 +37,7 @@ const MyReports: React.FC = () => {
   return (
     <div className="bg-[#EFF2F4]">
       {/* Header section */}
-      <div className="flex flex-row justify-between p-10 items-center">
+      <div className="flex flex-row justify-between my-10 md:my-0 md:p-10 items-center">
         <h1 className="text-4xl text-[#5D7285] font-bold mb-4">MyReports</h1>
         <button onClick={() => setReportFormModal(true)}
           className="p-3 px-8 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
@@ -46,9 +46,9 @@ const MyReports: React.FC = () => {
       </div>
 
       {/* Recent Reports section */}
-      <div className="flex justify-between p-10">
+      <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 md:justify-between md:p-10">
         {/* Recent Reports Section */}
-        <div className="w-1/2 bg-white p-10 rounded-lg shadow-xl px-10">
+        <div className="md:w-1/2 bg-white p-10 rounded-lg shadow-xl px-10">
           <h2 className="text-2xl font-semibold mb-4">Recent reports</h2>
           <div className="space-y-4">
             {[1, 2, 3, 4].map((report, index) => (
@@ -58,7 +58,7 @@ const MyReports: React.FC = () => {
                   } bg-[#EFF2F4] hover:shadow-lg`}
               >
                 {/* Image */}
-                <div className="w-20 h-20 mr-4">
+                <div className="mr-4">
                   <img
                     src={imgsport} // Replace this with the path to your actual image
                     alt={`Report ${report}`}
@@ -68,7 +68,7 @@ const MyReports: React.FC = () => {
                 </div>
 
                 {/* Report content */}
-                <div className="flex-grow">
+                < div className="flex-grow" >
                   <h3 className="text-xl font-bold shadow-2xl mb-2">
                     Report {report}
                   </h3>
@@ -84,15 +84,13 @@ const MyReports: React.FC = () => {
                     </button>
                   </div>
                 </div>
-
-                {/* See More button */}
               </div>
             ))}
           </div>
         </div>
 
         {/* Placeholder for right side content */}
-        <div className="w-1/3 bg-white rounded-lg shadow-xl py-10 px-10">
+        <div className="md:w-1/3 bg-white rounded-lg shadow-xl py-10 px-10">
           {/* You can add any additional content here */}
           <div className="flex flex-row items-center justify-between mb-4">
             <h2 className="text-2xl text-[#5D7285] font-semibold">Report 1</h2>
@@ -107,7 +105,7 @@ const MyReports: React.FC = () => {
           {/* Centered Pie Chart */}
           <div
             className="flex justify-center items-center w-full mt-20"
-            style={{ height: "300px" }}
+            style={{ height: "320px" }}
           >
             {selectedView === "pie" && <PieChart data={transformedData} />}
             {selectedView === "lineGraph" && (
@@ -119,9 +117,9 @@ const MyReports: React.FC = () => {
             )}
           </div>
         </div>
-      </div>
+      </div >
       {reportFormModal && <ReportsForm closeModal={() => setReportFormModal(false)} />}
-    </div>
+    </div >
   );
 };
 

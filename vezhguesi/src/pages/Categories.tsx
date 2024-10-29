@@ -125,9 +125,8 @@ const Categories: React.FC = () => {
           <button
             key={category}
             onClick={() => setSelectedCategory(category as Category)}
-            className={`${
-              selectedCategory === category ? "bg-blue-700" : "bg-blue-500"
-            } text-white px-4 py-2 rounded-[9px] hover:bg-blue-600`}
+            className={`${selectedCategory === category ? "bg-blue-700" : "bg-blue-500"
+              } text-white px-4 py-2 rounded-[9px] hover:bg-blue-600`}
           >
             {category}
           </button>
@@ -135,7 +134,7 @@ const Categories: React.FC = () => {
       </div>
 
       {/* Cards Section */}
-      <div className="flex flex-row space-x-6">
+      <div className="flex flex-col md:flex-row md:space-x-6 space-y-5 md:space-y-0">
         {cardData[selectedCategory].map((card, index) => (
           <Card2
             key={index}
