@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import google from "../../assets/google.jpg";
-import { LoginRequest } from "../../models/Auth";
+import { LoginRequest, LoginResponse } from "../../models/Auth";
 import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -26,8 +26,18 @@ const Signin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await handleLogin(loginData);
-      navigate("/dashboard");
+      await handleLogin(loginData).then((res: LoginResponse) => {
+        console.log(res);
+        if (res && res.token) {
+          navigate("/dashboard");
+        } else if (res && res.error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Signin failed',
+            text: 'Credentials are incorrect.',
+          });
+        }
+      });
     } catch (error) {
       console.error("Failed to sign in:", error);
       Swal.fire({

@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useState, useEffect } from "react";
-import { LoginRequest, UserData } from "../models/Auth";
+import { LoginRequest, LoginResponse, UserData } from "../models/Auth";
 import AuthService from "../services/Auth";
 
 type AuthContext = {
@@ -7,7 +7,7 @@ type AuthContext = {
     currentUser?: UserData | null;
     setCurrentUser: React.Dispatch<React.SetStateAction<UserData | null | undefined>>;
 
-    handleLogin: (req: LoginRequest) => Promise<void>;
+    handleLogin: (req: LoginRequest) => Promise<LoginResponse>;
     handleLogout: () => Promise<void>;
 }
 
@@ -39,7 +39,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         }
     }, [authToken]);
 
-    async function handleLogin(req: LoginRequest) {
+    async function handleLogin(req: LoginRequest): Promise<LoginResponse> {
         try {
             const res = await AuthService.login(req);
             const { token, userData } = res;
@@ -47,10 +47,12 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             localStorage.setItem("token", token);
             setCurrentUser(userData);
             localStorage.setItem("currentUser", JSON.stringify(userData));
-        } catch {
+            return res; // Return the response to satisfy the return type
+        } catch (error) {
             setAuthToken(null);
             setCurrentUser(null);
             localStorage.removeItem("currentUser");
+            return Promise.reject(error); // Return a rejected promise
         }
     }
 

@@ -23,37 +23,37 @@ const PageLayout: React.FC = () => {
         <nav className="space-y-4">
           <ul className="space-y-4 pl-4">
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaHome />
                 <span>Dashboard</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard/categories" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/categories' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard/categories" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard/categories' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaPen />
                 <span>Categories</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard/bots" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/bots' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard/bots" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard/bots' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaRobot />
                 <span>Bots</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard/reports" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/reports' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard/reports" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard/reports' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaFileAlt />
                 <span>My Reports</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard/favorites" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/favorites' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard/favorites" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard/favorites' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaStar />
                 <span>Favorites</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
-              <Link to="/dashboard/tools" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/tools' ? 'text-blue-500' : 'text-gray-500'}`}>
+              <Link to="/dashboard/tools" onClick={toggleSidebar} className={`flex space-x-2 items-center ${location.pathname === '/dashboard/tools' ? 'text-[#0C7FDA]' : 'text-gray-500'}`}>
                 <FaTools />
                 <span>Tools</span>
               </Link>
