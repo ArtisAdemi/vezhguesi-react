@@ -19,84 +19,84 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <LandingPage />,
-    },
-    {
-        path: "/dashboard",
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute allowedRoles={["admin", "user"]}>
+        <PageLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "", // Relative path for the dashboard
+        element: <Dashboard />,
+      },
+      {
+        path: "categories", // Relative path for categories
+        element: <Categories />,
+      },
+      {
+        path: "bots", // Relative path for bots
+        element: <Bots />,
+      },
+      {
+        path: "reports", // Relative path for reports
+        element: <MyReports />,
+      },
+      {
+        path: "profile", // Relative path for profile
+        element: <Profile />,
+      },
+      {
+        path: "tools", // Relative path for tools
+        element: <Tools />,
+      },
+      {
+        path: "favorites", // Relative path for favorites
+        element: <Favorites />,
+      },
+      {
+        path: "singlebot", // Relative path for singlebot
+        element: <Singlebot />,
+      },
+      {
+        path: "singlereport", // Relative path for singlereport
+        element: <SingleReport />,
+      },
+      {
+        path: "admin", // Relative path for admin
         element: (
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
-                <PageLayout />
-            </ProtectedRoute>
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <Admin />
+          </ProtectedRoute>
         ),
-        children: [
-            {
-                path: "", // Relative path for the dashboard
-                element: <Dashboard />,
-            },
-            {
-                path: "categories", // Relative path for categories
-                element: <Categories />,
-            },
-            {
-                path: "bots", // Relative path for bots
-                element: <Bots />,
-            },
-            {
-                path: "reports", // Relative path for reports
-                element: <MyReports />,
-            },
-            {
-                path: "profile", // Relative path for profile
-                element: <Profile />,
-            },
-            {
-                path: "tools", // Relative path for tools
-                element: <Tools />,
-            },
-            {
-                path: "favorites", // Relative path for favorites
-                element: <Favorites />,
-            },
-            {
-                path: "singlebot", // Relative path for singlebot
-                element: <Singlebot />,
-            },
-            {
-                path: "singlereport", // Relative path for singlereport
-                element: <SingleReport />,
-            },
-            {
-                path: "admin", // Relative path for admin
-                element: (
-                    <ProtectedRoute allowedRoles={["admin"]}>
-                        <Admin />
-                    </ProtectedRoute>
-                ),
-            },
-        ],
-    },
-    {
-        path: "/signin",
-        element: <Signin />,
-    },
-    {
-        path: "/signup",
-        element: <Signup />,
-    },
-    {
-        path: "/verify-signup",
-        element: <VerifyEmail />,
-    },
-    {
-        path: "/forgot-password",
-        element: <ForgotPw />,
-    },
-    {
-        path: "/reset-password/:token",
-        element: <ResetPassword />,
-    },
+      },
+    ],
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/verify-signup",
+    element: <VerifyEmail />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPw />,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPassword />,
+  },
 ]);
 
 export default router;

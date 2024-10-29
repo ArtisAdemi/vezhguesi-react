@@ -31,9 +31,9 @@ const Signin: React.FC = () => {
     } catch (error) {
       console.error("Failed to sign in:", error);
       Swal.fire({
-        icon: 'error',
-        title: 'Signin failed',
-        text: 'Please try again.',
+        icon: "error",
+        title: "Signin failed",
+        text: "Please try again.",
       });
     }
   };
@@ -110,7 +110,12 @@ const Signin: React.FC = () => {
         <div className="mt-4 ">
           <div className="border p-4 flex justify-between items-center cursor-pointer rounded-md hover:shadow-lg space-x-2">
             <span>Sign in with Google</span>
-            <img src={google} alt="Google logo" className="w-6 h-6" loading="lazy" />
+            <img
+              src={google}
+              alt="Google logo"
+              className="w-6 h-6"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
