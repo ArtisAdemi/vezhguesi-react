@@ -14,7 +14,8 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
 
     return (
         <div className=''>
-            <header className="flex justify-between items-center p-4 shadow-b bg-white fixed w-full md:w-[calc(100%-16rem)] z-50 top-0 left-0 md:left-64">
+            <header className="flex justify-between items-center p-4 bg-white fixed w-full md:w-[calc(100%-16rem)] z-50 top-0 left-0 md:left-64"
+                style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
                 <button className="md:hidden p-2" onClick={toggleSidebar}>
                     <span className="text-gray-700">&#9776;</span> {/* Hamburger icon */}
                 </button>
