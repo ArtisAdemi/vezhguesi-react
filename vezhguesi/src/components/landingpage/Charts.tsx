@@ -11,7 +11,6 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import image1 from "../../assets/image 1.jpg";
 
 // Sample data including positive and negative sentiment counts for each month
 const data = [
