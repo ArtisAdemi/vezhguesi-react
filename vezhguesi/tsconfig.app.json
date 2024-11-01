@@ -18,7 +18,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["fullpage.js"]
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "types/fullpage.d.ts"
+  ]
 }

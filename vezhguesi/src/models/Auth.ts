@@ -34,6 +34,7 @@ export interface LoginRequest {
 export interface LoginResponse {
     token: string;
     userData: UserData;
+    error: string;
 }
 
 export class UserData {

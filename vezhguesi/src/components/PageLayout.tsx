@@ -24,9 +24,8 @@ const PageLayout: React.FC = () => {
     <div className="flex h-screen">
       {/* Sidebar */}
       <aside
-        className={`w-64 h-full fixed bg-white p-4 z-50 transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:translate-x-0`}
+        className={`w-64 h-full fixed bg-white p-4 z-50 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 md:translate-x-0`}
       >
         <div className="mb-16">
           <h1 className="text-lg font-bold text-start mt-2">Logo</h1>
@@ -37,9 +36,8 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/" ? "text-blue-500" : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/" ? "text-blue-500" : "text-gray-500"
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaHome size={20} />
                 <span>Dashboard</span>
@@ -49,11 +47,10 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard/categories"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/categories"
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/categories"
                     ? "text-blue-500"
                     : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaPen size={20} />
                 <span>Categories</span>
@@ -63,11 +60,10 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard/bots"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/bots"
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/bots"
                     ? "text-blue-500"
                     : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaRobot size={20} />
                 <span>Bots</span>
@@ -77,11 +73,10 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard/reports"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/reports"
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/reports"
                     ? "text-blue-500"
                     : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaFileAlt size={20} />
                 <span>My Reports</span>
@@ -91,11 +86,10 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard/favorites"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/favorites"
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/favorites"
                     ? "text-blue-500"
                     : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaStar size={20} />
                 <span>Favorites</span>
@@ -105,11 +99,10 @@ const PageLayout: React.FC = () => {
               <Link
                 to="/dashboard/tools"
                 onClick={toggleSidebar}
-                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/tools"
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/tools"
                     ? "text-blue-500"
                     : "text-gray-500"
-                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+                  } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaTools size={20} />
                 <span>Tools</span>
