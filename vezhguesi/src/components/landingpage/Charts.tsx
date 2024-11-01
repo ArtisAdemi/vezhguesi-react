@@ -11,6 +11,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import image1 from "../../assets/image 1.jpg";
 
 // Sample data including positive and negative sentiment counts for each month
 const data = [
@@ -47,7 +48,7 @@ const CustomGraph: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#1A1A1A] p-8 rounded-lg shadow-lg w-full md:w-4/5 max-w-lg">
+    <div className="bg-[#1A1A1A] p-8 rounded-lg shadow-lg md:w-4/5 max-w-lg">
       {/* Header with Toggle Button */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold text-white">
