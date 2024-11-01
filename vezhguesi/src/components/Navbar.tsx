@@ -13,12 +13,13 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="">
-      <header className="flex justify-between px-8 items-center p-4 shadow-b bg-white fixed w-full md:w-[calc(100%-16rem)] z-50 top-0 left-0 md:left-64">
+    <div className=''>
+      <header className="flex justify-between items-center p-4 bg-white fixed w-full md:w-[calc(100%-16rem)] z-50 top-0 left-0 md:left-64"
+        style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
         <button className="md:hidden p-2" onClick={toggleSidebar}>
           <span className="text-gray-700">&#9776;</span> {/* Hamburger icon */}
         </button>
-        <div className="hidden md:flex items-center  rounded-md border px-4 py-2">
+        <div className="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2">
           <input
             type="text"
             placeholder="Search Anything"
@@ -27,7 +28,7 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
           <FaSearch className="text-gray-500 ml-2" />
         </div>
         <div className="flex items-center space-x-4">
-          <FaBell className="text-gray-500" size={20} />
+          <FaBell className="text-gray-500" />
           <div className="flex items-center space-x-2">
             <img
               src="https://via.placeholder.com/40"
@@ -35,12 +36,7 @@ const Navbar: React.FC<{ toggleSidebar: () => void }> = ({ toggleSidebar }) => {
               className="w-10 h-10 rounded-full"
               loading="lazy"
             />
-            <span
-              className="text-gray-700 cursor-pointer"
-              onClick={() => redirect("/dashboard/profile")}
-            >
-              {currentUser?.firstName} {currentUser?.lastName}
-            </span>
+            <span className="text-gray-700 cursor-pointer" onClick={() => redirect('/dashboard/profile')}>{currentUser?.firstName} {currentUser?.lastName}</span>
           </div>
         </div>
       </header>
