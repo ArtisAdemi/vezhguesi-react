@@ -5,6 +5,7 @@ import { LoginRequest, LoginResponse } from "../../models/Auth";
 import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import image1 from "../../assets/image 1.jpg";
 
 const Signin: React.FC = () => {
   const { handleLogin } = useAuth();
@@ -49,46 +50,34 @@ const Signin: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-evenly bg-white min-h-screen">
-      {/* Left side: Sign up information */}
-      <div className="flex flex-col items-center p-8">
-        <h2 className="text-4xl font-bold mb-4">Sign Up to</h2>
-        <p className="text-xl mb-4">Lorem Ipsum is simply</p>
-        <p className="text-sm text-center mb-4">
-          If you don’t have an account, <br />
-          you can{" "}
-          <Link
-            to="/signup"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Register Here!
-          </Link>
-        </p>
-      </div>
-
-      {/* Right side: Sign in form */}
-      <div className="flex flex-col items-center md:w-1/3 p-8">
-        <h1 className="text-3xl font-semibold mb-6">Sign In</h1>
-        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center  "
+      style={{ backgroundImage: `url(${image1})` }} // Background image
+    >
+      <div className="flex flex-col items-center w-full max-w-md backdrop-blur-md bg-white/10 border border-opacity-10 text-white shadow-2xl rounded-md p-8">
+        <h1 className="text-3xl font-semibold text-white mb-6 text-center">
+          Welcome Back
+        </h1>
+        <form className="w-full" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div className="mb-4">
             <input
               type="email"
               name="email"
               placeholder="Enter Email"
-              className="w-full p-3 border rounded-md shadow-sm placeholder:text-[#2c2c31] focus:outline-none focus:border-blue-500"
+              className="w-full p-3 backdrop-blur-md bg-white/10 border border-opacity-10 rounded-md shadow-sm text-white placeholder:text-white focus:outline-none"
               value={loginData.email}
               onChange={handleChange}
             />
           </div>
 
           {/* Password Input */}
-          <div className="mb-4">
+          <div className="mb-2">
             <input
               type="password"
               name="password"
               placeholder="Enter Password"
-              className="w-full p-3 border rounded-md shadow-sm placeholder:text-[#2c2c31] focus:outline-none focus:border-blue-500"
+              className="w-full p-3 backdrop-blur-md bg-white/10 border border-opacity-10 rounded-md shadow-sm placeholder:text-white text-white focus:outline-none"
               value={loginData.password}
               onChange={handleChange}
             />
@@ -98,7 +87,7 @@ const Signin: React.FC = () => {
           <div className="flex justify-between w-full mb-6">
             <Link
               to="/forgot-password"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-white hover:underline"
             >
               Forgot Password?
             </Link>
@@ -111,21 +100,38 @@ const Signin: React.FC = () => {
           >
             Sign In
           </button>
+          <div className="flex flex-col  justify-center mt-4  items-center">
+            <p className="text-sm ">
+              Don't have an account? <br />
+            </p>
+            <Link
+              to="/signup"
+              className="text-blue-600 font-semibold hover:underline"
+            >
+              Sign Up
+            </Link>
+          </div>
         </form>
 
         {/* Divider */}
-        <p className="text-sm mt-6">or continue with</p>
+        <div className="mt-4 w-full">
+          <div className="flex items-center justify-center space-x-2">
+            <div className="flex-grow border-t border-gray-300" />
+            <span className="text-white">OR</span>
+            <div className="flex-grow border-t border-gray-300" />
+          </div>
 
-        {/* Google Sign-in */}
-        <div className="mt-4 ">
-          <div className="border p-4 flex justify-between items-center cursor-pointer rounded-md hover:shadow-lg space-x-2">
-            <span>Sign in with Google</span>
-            <img
-              src={google}
-              alt="Google logo"
-              className="w-6 h-6"
-              loading="lazy"
-            />
+          {/* Google Sign-in */}
+          <div className="border p-4 flex space-x-6 justify-center items-center cursor-pointer rounded-md hover:shadow-lg mt-4">
+            <span className="">Sign in with Google</span>
+            <div className="flex justify-center items-center">
+              <img
+                src={google}
+                alt="Google logo"
+                className="w-6 h-6"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>

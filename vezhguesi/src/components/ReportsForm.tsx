@@ -23,7 +23,7 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
         const { name, value } = e.target;
         setReportsData((prevData: Report) => ({
             ...prevData,
-            [name]: value,
+            [name]: name === 'startDate' || name === 'endDate' ? new Date(value) : value,
         }));
         setErrors((prevErrors) => ({
             ...prevErrors,
@@ -35,26 +35,45 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
         const newErrors: Partial<Report> = {};
         if (!reportsData.subject) newErrors.subject = "Subject is required";
 
-        //Kto spom bajn momentalisht
-
-        // Check if toDate and fromDate are valid Date objects
-        // if (reportsData.toDate && !(reportsData.toDate instanceof Date)) {
-        //     newErrors.toDate = "Invalid To Date";
-        // }
-        // if (reportsData.fromDate && !(reportsData.fromDate instanceof Date)) {
-        //     newErrors.fromDate = "Invalid From Date";
-        // }
-
         return newErrors;
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const currentDate = new Date();
+
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
+
+        if (reportsData.startDate > currentDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date Input.',
+                text: "Start date should be an older date than the current date",
+            });
+            return;
+        }
+        if (reportsData.endDate > currentDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date Input.',
+                text: "You cannot make a report for the future",
+            });
+            return;
+        }
+        if (reportsData.startDate > reportsData.endDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date Input.',
+                text: "Start date should be an older date than end date",
+            });
+            return;
+        }
+
         try {
             if (currentUser && authToken) {
                 await ReportServices.createReport(reportsData, authToken);
@@ -98,7 +117,8 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
                             <input
                                 className='p-2 border border-[#4F4F4F] rounded-lg'
                                 name='startDate'
-
+                                value={reportsData.startDate.toISOString().split('T')[0]} // Convert Date to YYYY-MM-DD string
+                                onChange={handleChange}
                                 type="date"
                                 id='startDate'
                             />
@@ -109,6 +129,8 @@ const ReportsForm: React.FC<ReportsFormProps> = ({ closeModal }) => {
                                 className='p-2 border border-[#4F4F4F] rounded-lg'
                                 type="date"
                                 name='endDate'
+                                value={reportsData.endDate.toISOString().split('T')[0]} // Convert Date to YYYY-MM-DD string
+                                onChange={handleChange}
                                 id='endDate'
                             />
                         </div>

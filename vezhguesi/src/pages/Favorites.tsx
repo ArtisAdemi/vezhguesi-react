@@ -66,7 +66,7 @@ const Favorites: React.FC = () => {
   ];
 
   return (
-    <div className="p-4">
+    <div className="">
       <h1 className="text-4xl text-[#5D7285] font-bold">Favorites</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
         {cards.map((card, index) => (
