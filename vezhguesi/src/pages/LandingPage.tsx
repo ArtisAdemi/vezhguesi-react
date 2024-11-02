@@ -6,7 +6,7 @@ import LandingSource from "../components/landingpage/LandingSource";
 import LandingAbout from "../components/landingpage/LandingAbout";
 import LandingCTA from "../components/landingpage/LandingCTA";
 import LandingMission from "../components/landingpage/LandingMission";
-import LandingPricing from "../components/landingpage/LandingPricing";
+//import LandingPricing from "../components/landingpage/LandingPricing";
 import LandingFooter from "../components/landingpage/LandingFooter";
 import Landinghero from "../components/landingpage/LandingHero";
 
@@ -14,7 +14,7 @@ const LandingPage: React.FC = () => {
   const [] = useState(false);
 
   return (
-    <div>
+    <div className="">
       <LandingNavbar />
       <Landinghero />
       <LandingIntroduction />
@@ -23,7 +23,7 @@ const LandingPage: React.FC = () => {
 
       <LandingMission />
       <LandingCTA />
-      <LandingPricing />
+      {/* <LandingPricing /> */}
       <LandingFooter />
     </div>
   );
