@@ -10,7 +10,9 @@ const LandingNavbar: React.FC = () => {
     navigate(path);
   };
   return (
-    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 rounded-lg mt-6 flex justify-between items-center py-4 px-4 max-w-7xl w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border border-white border-opacity-20 text-white z-50  shadow-lg">
+
+    //            mobile breakpoint -> 2.5% space each side (95% width)
+    <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 rounded-lg mt-6 flex justify-between items-center py-4 px-4 max-w-7xl w-[95%] md:w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border border-white border-opacity-20 text-white z-50  shadow-lg">
       <div className="text-2xl font-bold">VEZHGUESI</div>
 
       <div className="hidden md:flex space-x-4">
@@ -71,6 +73,7 @@ const LandingNavbar: React.FC = () => {
         </div>
       )}
     </nav>
+
   );
 };
 
