@@ -14,15 +14,13 @@ const LandingIntroduction: React.FC = () => {
               Vezhguesi
             </h2>
           </div>
-          <p className="text-base md:text-lg w-full mb-4">
+          <p className="text-base md:text-lg text-center md:text-start w-full mb-4">
             Our next-generation model brings the world to your fingertips with
             its cutting-edge AI technology. Explore the latest news across
             various topics effortlessly, curated and delivered by our
             intelligent bot.
           </p>
-          <p className="text-base md:text-lg mb-6">
-            Experience the future of news consumption with Vezhguesi.
-          </p>
+
           <button className="px-6 py-3 bg-transparent md:w-1/2 border-opacity-20 text-white border border-white rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl">
             Try Vezhguesi
           </button>
