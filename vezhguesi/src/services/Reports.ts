@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Report } from "../models/Reports";
+import { MyReportsResponse, Report } from "../models/Reports";
 import { API_URL } from "./backendUrl";
 
 class ReportService {
@@ -18,6 +18,15 @@ class ReportService {
         }
     }
 
+    async getMyReports(token: string): Promise<MyReportsResponse> {
+        try {
+            const response = await axios.get(`${API_URL}/reports/my-reports`, { headers: { Authorization: `Bearer ${token}` } });
+            return response.data;
+        } catch (error) {
+            console.error("Failed to get my reports: ", error);
+            throw new Error("Error getting my reports. Please try again later!");
+        }
+    }
 }
 
 export default new ReportService();

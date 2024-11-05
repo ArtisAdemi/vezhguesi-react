@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imgsport from "../assets/imgsport.jpg";
 import PieChart from "../components/PieChart";
 import LineChart from "../components/LineChart";
 import mockData from "../assets/data/mockData";
 import mockSentimentData from "../assets/data/mockSentimentData";
 import ReportsForm from "../components/ReportsForm";
+import ReportsService from "../services/Reports";
+import { ReportEntity } from "../models/Reports";
 
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
   const [selectedView, setSelectedView] = useState<string>(viewOptions[0]);
   const [reportFormModal, setReportFormModal] = useState(false);
-
+  const [reports, setReports] = useState<ReportEntity[]>([]);
   const changeView = () => {
     setSelectedView((prevView) =>
       prevView === viewOptions[0] ? viewOptions[1] : viewOptions[0]
     );
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      ReportsService.getMyReports(token).then((data) => setReports(data.entities));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(reports);
+  }, [reports]);
 
   const transformedData = mockSentimentData
     .map((item) => {
