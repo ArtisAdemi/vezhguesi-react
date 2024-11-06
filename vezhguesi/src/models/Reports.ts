@@ -49,6 +49,9 @@ export interface ReportEntity {
     analyses: Analysis[];
     entity_name: string;
     total_articles: number;
+    sentiment_label: string;
+    average_sentiment: number;
+    summary: string;
 }
 
 export interface MyReportsResponse {
