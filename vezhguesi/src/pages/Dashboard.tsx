@@ -4,6 +4,7 @@ import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
 import PieChart from '../components/PieChart'
 import { useAuth } from '../hooks/useAuth'
+import BotActivity from '../components/BotActivity'
 
 // Transform mockSentimentData to the expected format
 const transformedData = mockSentimentData.map(item => {
@@ -30,12 +31,17 @@ const Dashboard: React.FC = () => {
             <h1>Hello {currentUser?.firstName}</h1>
             <h1 className='hidden md:block'>Your Token: {authToken}</h1>
             {/* TESTING AREA */}
-            <div className='h-[400px] w-[100%] md:h-[400px] md:w-[800px]'>
-                <LineChart
-                    data={data}
-                    xAxisLabel="Month"
-                    yAxisLabel="Mentions"
-                />
+            <div className='flex flex-col md:flex-row justify-between '>
+                <div className='h-[400px] shadow-md rounded-lg bg-white w-[100%] md:h-[400px] md:w-[50%] md:px-3'>
+                    <LineChart
+                        data={data}
+                        xAxisLabel="Month"
+                        yAxisLabel="Mentions"
+                    />
+                </div>
+                <div className='w-full mt-5 md:mt-0 md:w-[25%]'>
+                    <BotActivity />
+                </div>
             </div>
             <div className='h-[400px] w-[100%] md:h-[400px] md:w-[800px]'>
                 <LineChart
