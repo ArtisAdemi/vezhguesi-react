@@ -52,15 +52,15 @@ const Profile: React.FC = () => {
 
   return (
     <div className="w-[100%]">
-      <div className="px-20 bg-white p-6">
+      <div className="md:px-20 bg-white p-6">
         <div className="text-4xl mb-4">Settings</div>
         <div className="flex gap-x-4">
           <h1>Profile</h1>
           <h1>Payments</h1>
         </div>
       </div>
-      <div className="flex bg-white mt-8 py-4">
-        <div className="leftSide w-[45%] px-[6%] border-2 border-l-0 border-t-0 border-b-0 flex flex-col py-12 justify-center">
+      <div className="flex md:flex-row flex-col bg-white mt-8 py-4">
+        <div className="leftSide md:w-[45%] md:px-[6%] md:border-2 border-l-0 border-t-0 border-b-0 flex flex-col py-12 justify-center">
           <div className="flex flex-col items-center mb-4">
             <h1 className="text-[#6C6C6C] text-3xl mb-4">Profile</h1>
             <img src={profile} alt="" loading="lazy" />
@@ -88,7 +88,7 @@ const Profile: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="rightSide w-[55%] px-[6%] py-24">
+        <div className="rightSide md:w-[55%] md:px-[6%] py-24">
           <form action="" className="pt-6" onSubmit={handleSubmit}>
             <div className="flex justify-between border-2 border-l-0 border-r-0 border-t-0 pb-6">
               <h1 className="font-bold text-lg">Account Information</h1>
