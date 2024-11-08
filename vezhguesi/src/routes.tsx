@@ -86,7 +86,7 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "/verify-signup",
+    path: "/verify-signup/:token",
     element: <VerifyEmail />,
   },
   {
