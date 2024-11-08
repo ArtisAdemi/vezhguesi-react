@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
                     <BotActivity />
                 </div>
             </div>
-            <div className='h-[400px] w-[100%] md:h-[400px] md:w-[800px]'>
+            <div className='h-[400px] mt-5 md:mt-0 shadow-md rounded-lg bg-white w-[100%] md:h-[400px] md:w-[800px]'>
                 <LineChart
                     data={mockSentimentData}
                     xAxisLabel="Month"
