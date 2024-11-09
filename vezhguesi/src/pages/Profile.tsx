@@ -60,7 +60,7 @@ const Profile: React.FC = () => {
         </div>
       </div>
       <div className="flex md:flex-row flex-col bg-white mt-8 py-4">
-        <div className="leftSide md:w-[45%] md:px-[6%] md:border-2 border-l-0 border-t-0 border-b-0 flex flex-col py-12 justify-center">
+        <div className="leftSide md:w-[45%] md:px-[6%] md:border-2 md:border-l-0 md:border-t-0 md:border-b-0 flex flex-col py-12 justify-center">
           <div className="flex flex-col items-center mb-4">
             <h1 className="text-[#6C6C6C] text-3xl mb-4">Profile</h1>
             <img src={profile} alt="" loading="lazy" />

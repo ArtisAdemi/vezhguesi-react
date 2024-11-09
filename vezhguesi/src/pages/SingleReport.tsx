@@ -28,16 +28,16 @@ const SingleReport: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 lg:p-10">
+    <div className="p-4">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-        <h1 className="text-3xl md:text-4xl text-[#5D7285] font-bold text-center md:text-left">
+      <div className="flex flex-col md:flex-row justify-between mb-8">
+        <h1 className="text-3xl md:text-4xl text-[#5D7285] font-bold text-left">
           Titulli Reportit
         </h1>
       </div>
 
       {/* Line Chart */}
-      <div className="w-full md:w-3/4 lg:w-2/3 h-[500px] mb-10 mx-auto">
+      <div className="w-full h-[400px] md:h-[500px] mb-10 ">
         <LineChart data={chartData} xAxisLabel="Month" yAxisLabel="Value" />
       </div>
 
@@ -46,11 +46,11 @@ const SingleReport: React.FC = () => {
         <img
           src={imgsport}
           alt="Sport Image"
-          className="w-full md:w-2/3 lg:w-1/1 mb-6 rounded-lg shadow-lg"
+          className="w-full md:w-2/3 lg:w-full mb-6 rounded-lg shadow-lg"
           loading="lazy"
         />
-        <div className="text-center max-w-3xl px-4">
-          <h1 className="font-semibold text-3xl md:text-4xl mb-4">
+        <div className="lg:text-start w-full ">
+          <h1 className="text-center font-semibold text-3xl md:text-4xl mb-4">
             Permbledhje
           </h1>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -67,14 +67,14 @@ const SingleReport: React.FC = () => {
       </div>
 
       {/* Entities Section */}
-      <div className="mt-12 p-6 lg:p-10 font-semibold text-2xl">
+      <div className="mt-12 lg:p-10 font-semibold text-2xl">
         <h2 className="mb-6">Entitet e Permendura</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Entity Item */}
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
             <img
               src={imgsport}
-              className="w-1/2 md:w-1/4 rounded-lg shadow-md"
+              className=" md:w-1/4 rounded-lg shadow-md"
               loading="lazy"
             />
             <p className="text-start text-gray-600 text-base leading-relaxed">
