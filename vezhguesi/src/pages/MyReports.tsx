@@ -1,38 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imgsport from "../assets/imgsport.jpg";
 import PieChart from "../components/PieChart";
 import LineChart from "../components/LineChart";
 import mockData from "../assets/data/mockData";
-import mockSentimentData from "../assets/data/mockSentimentData";
 import ReportsForm from "../components/ReportsForm";
+import ReportsService from "../services/Reports";
+import { ReportEntity } from "../models/Reports";
 
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
   const [selectedView, setSelectedView] = useState<string>(viewOptions[0]);
   const [reportFormModal, setReportFormModal] = useState(false);
-
+  const [reports, setReports] = useState<ReportEntity[]>([]);
   const changeView = () => {
     setSelectedView((prevView) =>
       prevView === viewOptions[0] ? viewOptions[1] : viewOptions[0]
     );
   };
 
-  const transformedData = mockSentimentData
-    .map((item) => {
-      const positiveValue = item.data
-        .filter((d) => d.y > 0)
-        .reduce((acc, curr) => acc + curr.y, 0);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      ReportsService.getMyReports(token).then((data) => setReports(data.entities));
+    }
+  }, []);
 
-      const negativeValue = item.data
-        .filter((d) => d.y < 0)
-        .reduce((acc, curr) => acc + Math.abs(curr.y), 0);
-
-      return [
-        { id: `${item.id}-positive`, label: "Positive", value: positiveValue },
-        { id: `${item.id}-negative`, label: "Negative", value: negativeValue },
-      ];
-    })
-    .flat();
+  useEffect(() => {
+    console.log(reports);
+  }, [reports]);
 
   return (
     <div className="bg-[#EFF2F4]">
@@ -107,7 +102,15 @@ const MyReports: React.FC = () => {
             className="flex justify-center items-center w-full mt-20"
             style={{ height: "320px" }}
           >
-            {selectedView === "pie" && <PieChart data={transformedData} />}
+            {selectedView === "pie" && reports.length > 0 && (
+              <div className="text-center">
+                <PieChart averageSentiment={reports[0].average_sentiment} />
+                <p className="mt-2 text-sm text-gray-600">
+                  Sentiment Analysis: {reports[0].average_sentiment > 0 ? 'Positive' : 'Negative'}
+                  ({(((reports[0].average_sentiment + 1) / 2) * 100).toFixed(1)}%)
+                </p>
+              </div>
+            )}
             {selectedView === "lineGraph" && (
               <LineChart
                 data={mockData}
@@ -116,6 +119,12 @@ const MyReports: React.FC = () => {
               />
             )}
           </div>
+          <p className="text-[#5D7285] font-semibold">
+            This report is based on the last 30 days of data.
+          </p>
+          <p className="text-[#5D7285] font-semibold">
+            {reports[0]?.summary}
+          </p>
         </div>
       </div >
       {reportFormModal && <ReportsForm closeModal={() => setReportFormModal(false)} />}
