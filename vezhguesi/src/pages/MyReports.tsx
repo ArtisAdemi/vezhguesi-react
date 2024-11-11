@@ -33,7 +33,7 @@ const MyReports: React.FC = () => {
     <div className="bg-[#EFF2F4]">
       {/* Header section */}
       <div className="flex flex-row justify-between my-10 md:my-0 md:p-10 items-center">
-        <h1 className="text-4xl text-[#5D7285] font-bold mb-4">MyReports</h1>
+        <h1 className="text-4xl text-[#5D7285] font-bold mb-4">My Reports</h1>
         <button onClick={() => setReportFormModal(true)}
           className="p-3 px-8 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
           + New Report
@@ -46,14 +46,13 @@ const MyReports: React.FC = () => {
         <div className="md:w-1/2 bg-white p-10 rounded-lg shadow-xl px-10">
           <h2 className="text-2xl font-semibold mb-4">Recent reports</h2>
           <div className="space-y-4">
-            {[1, 2, 3, 4].map((report, index) => (
+            {reports.map((report, index) => (
               <div
                 key={index}
-                className={`flex flex-row p-4 border rounded-lg ${report === 1 ? "border-[#EFF2F4]" : ""
-                  } bg-[#EFF2F4] hover:shadow-lg`}
+                className={`flex flex-row p-4 border rounded-lg bg-[#EFF2F4] hover:shadow-lg`}
               >
                 {/* Image */}
-                <div className="mr-4">
+                <div className="mr-4 w-1/2">
                   <img
                     src={imgsport} // Replace this with the path to your actual image
                     alt={`Report ${report}`}
@@ -63,15 +62,12 @@ const MyReports: React.FC = () => {
                 </div>
 
                 {/* Report content */}
-                < div className="flex-grow" >
+                < div className="flex-grow w-1/2" >
                   <h3 className="text-xl font-bold shadow-2xl mb-2">
-                    Report {report}
+                    {report.entity_name}
                   </h3>
-                  <p className="text-gray-600">
-                    AI can analyze user data and behavior to create personalized
-                    experiences for individual users. This can help designers
-                    create interfaces that adapt to each user’s preferences,
-                    making the interface more intuitive and user-friendly.
+                  <p className="text-gray-600 line-clamp-5">
+                    {report.summary}
                   </p>
                   <div className="flex items-center">
                     <button className="text-gray-600 font-semibold">
@@ -119,12 +115,6 @@ const MyReports: React.FC = () => {
               />
             )}
           </div>
-          <p className="text-[#5D7285] font-semibold">
-            This report is based on the last 30 days of data.
-          </p>
-          <p className="text-[#5D7285] font-semibold">
-            {reports[0]?.summary}
-          </p>
         </div>
       </div >
       {reportFormModal && <ReportsForm closeModal={() => setReportFormModal(false)} />}
