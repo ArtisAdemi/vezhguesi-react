@@ -2,25 +2,9 @@ import React from 'react'
 import LineChart from '../components/LineChart'
 import data from '../assets/data/mockData'
 import mockSentimentData from '../assets/data/mockSentimentData'
-import PieChart from '../components/PieChart'
 import { useAuth } from '../hooks/useAuth'
 import BotActivity from '../components/BotActivity'
 
-// Transform mockSentimentData to the expected format
-const transformedData = mockSentimentData.map(item => {
-    const positiveValue = item.data
-        .filter(d => d.y > 0)
-        .reduce((acc, curr) => acc + curr.y, 0);
-
-    const negativeValue = item.data
-        .filter(d => d.y < 0)
-        .reduce((acc, curr) => acc + Math.abs(curr.y), 0);
-
-    return [
-        { id: `${item.id}-positive`, label: 'Positive', value: positiveValue },
-        { id: `${item.id}-negative`, label: 'Negative', value: negativeValue }
-    ];
-}).flat();
 
 const Dashboard: React.FC = () => {
     const { currentUser, authToken } = useAuth();
@@ -51,7 +35,7 @@ const Dashboard: React.FC = () => {
                 />
             </div>
             <div className='h-[400px] w-[400px] mx-auto md:mx-0'>
-                <PieChart data={transformedData} />
+                {/* <PieChart data={transformedData} /> */}
             </div>
         </div>
     )
