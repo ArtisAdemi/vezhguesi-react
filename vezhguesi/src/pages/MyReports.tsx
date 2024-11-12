@@ -6,6 +6,7 @@ import mockData from "../assets/data/mockData";
 import ReportsForm from "../components/ReportsForm";
 import ReportsService from "../services/Reports";
 import { ReportEntity } from "../models/Reports";
+import { Link } from "react-router-dom";
 
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
@@ -18,6 +19,8 @@ const MyReports: React.FC = () => {
     );
   };
 
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -26,7 +29,7 @@ const MyReports: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(reports);
+    console.log(reports, " reports");
   }, [reports]);
 
   return (
@@ -55,24 +58,28 @@ const MyReports: React.FC = () => {
                 <div className="mr-4 w-1/2">
                   <img
                     src={imgsport} // Replace this with the path to your actual image
-                    alt={`Report ${report}`}
+                    alt={`Report ${report.entity_name}`}
                     className="w-full h-full object-cover rounded"
                     loading="lazy"
                   />
                 </div>
 
                 {/* Report content */}
-                < div className="flex-grow w-1/2" >
+                <div className="flex-grow w-1/2">
                   <h3 className="text-xl font-bold shadow-2xl mb-2">
-                    {report.entity_name}
+                    <Link to={`/dashboard/reports/${encodeURIComponent(report.entity_name)}`}>{report.entity_name}</Link>
                   </h3>
                   <p className="text-gray-600 line-clamp-5">
-                    {report.summary}
+                    {/* {report.analyses && report.analyses.length > 0 ? report.analyses[0].article_metadata.article_summary : 'No summary available.'} */}
+                    {report.summary && report.summary.length > 0 ? report.summary : 'No summary available.'}
+
                   </p>
                   <div className="flex items-center">
-                    <button className="text-gray-600 font-semibold">
+                    <Link
+                      to={`/dashboard/reports/${encodeURIComponent(report.entity_name)}`}
+                      className="text-gray-600 font-semibold">
                       See more
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

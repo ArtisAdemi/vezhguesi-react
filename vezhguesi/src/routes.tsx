@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element: <Singlebot />,
       },
       {
-        path: "singlereport", // Relative path for singlereport
+        path: "reports/:entity_name", // Relative path for singlereport
         element: <SingleReport />,
       },
       {
