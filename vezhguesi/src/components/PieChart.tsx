@@ -9,9 +9,9 @@ const PieChart: React.FC<PieChartProps> = ({ averageSentiment }) => {
     const total = 100;
     const positivePercentage = ((averageSentiment + 1) / 2) * 100;
 
-    console.log('Sentiment:', averageSentiment);
-    console.log('Positive %:', positivePercentage);
-    console.log('Calculation:', `((${averageSentiment} + 1) / 2) * 100`);
+    // console.log('Sentiment:', averageSentiment);
+    // console.log('Positive %:', positivePercentage);
+    // console.log('Calculation:', `((${averageSentiment} + 1) / 2) * 100`);
 
     const negativePercentage = total - positivePercentage;
 

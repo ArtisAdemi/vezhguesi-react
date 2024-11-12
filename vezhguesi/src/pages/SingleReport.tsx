@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReportsService from "../services/Reports";
 import { ReportEntity } from "../models/Reports";
+import imgsport from "../assets/imgsport.jpg";
+import PieChart from "../components/PieChart";
+
 
 const SingleReport: React.FC = () => {
   const { entity_name } = useParams<{ entity_name: string }>();
@@ -28,24 +31,75 @@ const SingleReport: React.FC = () => {
     console.log("report: ", report);
   }, [report]);
 
+
+
   if (loading) {
     return <p>Loading report...</p>;
   }
 
 
   return (
-    <div>
-      <h1>Report for: {entity_name}</h1>
-      {report ? (
-        <div>
-          <h2>{report.entity_name}</h2>
-          <p>{report.summary || "No summary available"}</p>
-          <p className="text-red-700">{report?.average_sentiment}</p>
-          {/* Add more report details here as needed */}
+    <div className="p-4">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between mb-8">
+        <h1 className="text-3xl md:text-4xl text-[#5D7285] font-bold text-left">
+          Report: {report?.entity_name}
+        </h1>
+      </div>
+
+      {/* Line Chart */}
+      <div className="w-full h-[400px] md:h-[500px] mb-10 ">
+
+        {report && (
+          <div className="text-center">
+            <PieChart averageSentiment={report.average_sentiment} />
+            <p className="mt-2 text-sm text-gray-600">
+              Sentiment Analysis: {report.average_sentiment > 0 ? 'Positive' : report.average_sentiment < 0 ? 'Negative' : 'Neutral'}
+              ({(((report.average_sentiment + 1) / 2) * 100).toFixed(1)}%)
+            </p>
+          </div>
+        )}
+
+      </div>
+
+      {/* Image and Description */}
+      <div className="flex flex-col justify-center items-center mt-10">
+        <img
+          src={imgsport}
+          alt="Sport Image"
+          className="w-full md:w-2/3 lg:w-full mb-6 rounded-lg shadow-lg"
+          loading="lazy"
+        />
+        <div className="lg:text-start w-full ">
+          <h1 className="text-center font-semibold text-3xl md:text-4xl mb-4">
+            Permbledhje
+          </h1>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            {report?.summary}
+          </p>
         </div>
-      ) : (
-        <p>No report found for this entity.</p>
-      )}
+      </div>
+
+      {/* Entities Section */}
+      <div className="mt-12 lg:p-10 font-semibold text-2xl">
+        <h2 className="mb-6">Entitet e Permendura</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Entity Item */}
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+            <img
+              src={imgsport}
+              className=" md:w-1/4 rounded-lg shadow-md"
+              loading="lazy"
+            />
+            <p className="text-start text-gray-600 text-base leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+              repudiandae rem reiciendis cum, inventore maxime voluptatum? Quo
+              cum libero aliquam neque saepe, nisi eligendi minima eaque,
+              expedita repellat numquam odit!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
