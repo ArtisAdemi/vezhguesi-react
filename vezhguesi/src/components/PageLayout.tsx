@@ -48,8 +48,8 @@ const PageLayout: React.FC = () => {
                 to="/dashboard/categories"
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/categories"
-                    ? "text-blue-500"
-                    : "text-gray-500"
+                  ? "text-blue-500"
+                  : "text-gray-500"
                   } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaPen size={20} />
@@ -61,8 +61,8 @@ const PageLayout: React.FC = () => {
                 to="/dashboard/bots"
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/bots"
-                    ? "text-blue-500"
-                    : "text-gray-500"
+                  ? "text-blue-500"
+                  : "text-gray-500"
                   } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaRobot size={20} />
@@ -74,8 +74,8 @@ const PageLayout: React.FC = () => {
                 to="/dashboard/reports"
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/reports"
-                    ? "text-blue-500"
-                    : "text-gray-500"
+                  ? "text-blue-500"
+                  : "text-gray-500"
                   } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaFileAlt size={20} />
@@ -87,8 +87,8 @@ const PageLayout: React.FC = () => {
                 to="/dashboard/favorites"
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/favorites"
-                    ? "text-blue-500"
-                    : "text-gray-500"
+                  ? "text-blue-500"
+                  : "text-gray-500"
                   } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaStar size={20} />
@@ -100,8 +100,8 @@ const PageLayout: React.FC = () => {
                 to="/dashboard/tools"
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${location.pathname === "/tools"
-                    ? "text-blue-500"
-                    : "text-gray-500"
+                  ? "text-blue-500"
+                  : "text-gray-500"
                   } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaTools size={20} />
@@ -121,8 +121,10 @@ const PageLayout: React.FC = () => {
         <Navbar toggleSidebar={toggleSidebar} />
 
         {/* Main Content Area */}
-        <main
-          className="mt-12 border border-t-0 border-b-0 px-8 py-12"
+        <main onClick={() => setIsSidebarOpen(false)}
+          className="mt-12 border border-t-0 border-b-0 px-8 py-12 w-screen md:w-full overflow-hidden"
+          //Qeto 3 tailwind properties po e nreqin,
+          //po arsyeja pse shkaktohet overflow jane Charts 
           style={{ boxShadow: "inset 0 6px 10px rgba(0, 0, 0, 0.15)" }}
         >
           <Outlet />
@@ -133,3 +135,7 @@ const PageLayout: React.FC = () => {
 };
 
 export default PageLayout;
+
+
+
+

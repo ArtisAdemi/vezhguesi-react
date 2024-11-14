@@ -6,11 +6,13 @@ import mockData from "../assets/data/mockData";
 import ReportsForm from "../components/ReportsForm";
 import ReportsService from "../services/Reports";
 import { ReportEntity } from "../models/Reports";
+import { Link } from "react-router-dom";
 
 const MyReports: React.FC = () => {
   const viewOptions = ["pie", "lineGraph"];
   const [selectedView, setSelectedView] = useState<string>(viewOptions[0]);
   const [reportFormModal, setReportFormModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [reports, setReports] = useState<ReportEntity[]>([]);
   const changeView = () => {
     setSelectedView((prevView) =>
@@ -18,22 +20,29 @@ const MyReports: React.FC = () => {
     );
   };
 
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      ReportsService.getMyReports(token).then((data) => setReports(data.entities));
+      ReportsService.getMyReports(token).then((data) => {
+        setReports(data.entities);
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
     }
   }, []);
 
-  useEffect(() => {
-    console.log(reports);
-  }, [reports]);
+  // useEffect(() => {
+  //   console.log(reports, " reports");
+  // }, [reports]);
 
   return (
     <div className="bg-[#EFF2F4]">
       {/* Header section */}
       <div className="flex flex-row justify-between my-10 md:my-0 md:p-10 items-center">
-        <h1 className="text-4xl text-[#5D7285] font-bold mb-4">MyReports</h1>
+        <h1 className="text-4xl text-[#5D7285] font-bold mb-4">My Reports</h1>
         <button onClick={() => setReportFormModal(true)}
           className="p-3 px-8 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
           + New Report
@@ -46,41 +55,45 @@ const MyReports: React.FC = () => {
         <div className="md:w-1/2 bg-white p-10 rounded-lg shadow-xl px-10">
           <h2 className="text-2xl font-semibold mb-4">Recent reports</h2>
           <div className="space-y-4">
-            {[1, 2, 3, 4].map((report, index) => (
-              <div
-                key={index}
-                className={`flex flex-row p-4 border rounded-lg ${report === 1 ? "border-[#EFF2F4]" : ""
-                  } bg-[#EFF2F4] hover:shadow-lg`}
-              >
-                {/* Image */}
-                <div className="mr-4">
-                  <img
-                    src={imgsport} // Replace this with the path to your actual image
-                    alt={`Report ${report}`}
-                    className="w-full h-full object-cover rounded"
-                    loading="lazy"
-                  />
-                </div>
+            {loading ? (
+              <div>Loading...</div>
+            ) : reports.length === 0 ? (
+              <div>No reports found</div>
+            ) : (
+              reports.map((report, index) => (
+                <div
+                  key={index}
+                  className={`flex flex-row p-4 border rounded-lg bg-[#EFF2F4] hover:shadow-lg`}
+                >
+                  {/* Image */}
+                  <div className="mr-4 w-1/2">
+                    <img
+                      src={imgsport} // Replace this with the path to your actual image
+                      alt={`Report ${report.entity_name}`}
+                      className="w-full h-full object-cover rounded"
+                      loading="lazy"
+                    />
+                  </div>
 
-                {/* Report content */}
-                < div className="flex-grow" >
-                  <h3 className="text-xl font-bold shadow-2xl mb-2">
-                    Report {report}
-                  </h3>
-                  <p className="text-gray-600">
-                    AI can analyze user data and behavior to create personalized
-                    experiences for individual users. This can help designers
-                    create interfaces that adapt to each user’s preferences,
-                    making the interface more intuitive and user-friendly.
-                  </p>
-                  <div className="flex items-center">
-                    <button className="text-gray-600 font-semibold">
-                      See more
-                    </button>
+                  {/* Report content */}
+                  <div className="flex-grow w-1/2">
+                    <h3 className="text-xl font-bold shadow-2xl mb-2">
+                      <Link to={`/dashboard/reports/${encodeURIComponent(report.entity_name)}`}>{report.entity_name}</Link>
+                    </h3>
+                    <p className="text-gray-600 line-clamp-5">
+                      {report.summary && report.summary.length > 0 ? report.summary : 'No summary available.'}
+                    </p>
+                    <div className="flex items-center">
+                      <Link
+                        to={`/dashboard/reports/${encodeURIComponent(report.entity_name)}`}
+                        className="text-gray-600 font-semibold">
+                        See more
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
@@ -88,7 +101,7 @@ const MyReports: React.FC = () => {
         <div className="md:w-1/3 bg-white rounded-lg shadow-xl py-10 px-10">
           {/* You can add any additional content here */}
           <div className="flex flex-row items-center justify-between mb-4">
-            <h2 className="text-2xl text-[#5D7285] font-semibold">Report 1</h2>
+            <h2 className="text-2xl text-[#5D7285] font-semibold">Report for {reports[0]?.entity_name}</h2>
             <button
               className="text-[#5D7285] font-md"
               onClick={() => changeView()}
@@ -102,7 +115,7 @@ const MyReports: React.FC = () => {
             className="flex justify-center items-center w-full mt-20"
             style={{ height: "320px" }}
           >
-            {selectedView === "pie" && reports.length > 0 && (
+            {selectedView === "pie" && reports?.length > 0 && (
               <div className="text-center">
                 <PieChart averageSentiment={reports[0].average_sentiment} />
                 <p className="mt-2 text-sm text-gray-600">
@@ -119,12 +132,6 @@ const MyReports: React.FC = () => {
               />
             )}
           </div>
-          <p className="text-[#5D7285] font-semibold">
-            This report is based on the last 30 days of data.
-          </p>
-          <p className="text-[#5D7285] font-semibold">
-            {reports[0]?.summary}
-          </p>
         </div>
       </div >
       {reportFormModal && <ReportsForm closeModal={() => setReportFormModal(false)} />}
