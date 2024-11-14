@@ -22,19 +22,22 @@ const SingleReport: React.FC = () => {
         setLoading(false);
       });
     }
-    console.log("entity name : ", entity_name);
-    console.log("________________________________");
+
 
   }, [entity_name]);
 
-  useEffect(() => {
-    console.log("report: ", report);
-  }, [report]);
+  // useEffect(() => {
+  //   console.log("report: ", report);
+  // }, [report]);
 
 
 
   if (loading) {
     return <p>Loading report...</p>;
+  }
+
+  if (report === null) {
+    return <p>Report not found</p>;
   }
 
 
@@ -85,19 +88,18 @@ const SingleReport: React.FC = () => {
         <h2 className="mb-6">Entitet e Permendura</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Entity Item */}
-          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-            <img
-              src={imgsport}
-              className=" md:w-1/4 rounded-lg shadow-md"
-              loading="lazy"
-            />
-            <p className="text-start text-gray-600 text-base leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
-              repudiandae rem reiciendis cum, inventore maxime voluptatum? Quo
-              cum libero aliquam neque saepe, nisi eligendi minima eaque,
-              expedita repellat numquam odit!
-            </p>
-          </div>
+          {report?.related_entities.map((entity, index) => (
+            <div key={index} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+              <img
+                src={imgsport}
+                className=" md:w-1/4 rounded-lg shadow-md"
+                loading="lazy"
+              />
+              <p className="text-start text-gray-600 text-base leading-relaxed">
+                {entity.name}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

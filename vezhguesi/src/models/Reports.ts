@@ -52,6 +52,7 @@ export interface ReportEntity {
     sentiment_label: string;
     average_sentiment: number;
     summary: string;
+    related_entities: EntitySentiment[];
 }
 
 export interface MyReportsResponse {
