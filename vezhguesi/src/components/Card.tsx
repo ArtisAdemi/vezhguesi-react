@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({
   author,
 }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
+    <div className="bg-white  shadow-md rounded-lg p-4">
       <img
         src={image}
         alt={title}
