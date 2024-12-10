@@ -17,6 +17,7 @@ import Admin from "./pages/Admin";
 import ForgotPw from "./pages/Auth/ForgotPw";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
+import { SetOrganization } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/set-organization",
+    element: <SetOrganization />,
   },
   {
     path: "/verify-signup/:token",
