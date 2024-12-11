@@ -70,8 +70,8 @@ const Trending: React.FC = () => {
     ];
 
     return (
-        <div className="mt-20 overflow-hidden">
-            <div className="flex justify-between mb-6">
+        <div className="mt-10 lg:mt-40">
+            <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold">Trending News</h2>
                 <div className="flex gap-x-5">
                     <button className="p-3 bg-white rounded-xl hover:scale-105 hover:shadow-md duration-300 swiper-button-prev">
