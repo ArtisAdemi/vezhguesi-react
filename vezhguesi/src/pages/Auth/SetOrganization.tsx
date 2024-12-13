@@ -3,6 +3,8 @@ import image1 from "../../assets/image 1.jpg";
 import { useNavigate } from "react-router-dom";
 import { FaBuilding } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { OrgRequest } from "../../models/Org";
+import OrgService from "../../services/Org";
 
 const SetOrganization: React.FC = () => {
   const [organizationData, setOrganizationData] = useState({
@@ -50,21 +52,31 @@ const SetOrganization: React.FC = () => {
       return;
     }
 
+    const orgRequest: OrgRequest = {
+      name: organizationData.organizationName,
+      size: organizationData.organizationSize,
+      token: localStorage.getItem("token") || "",
+    };
+
     setIsLoading(true);
     try {
       // Here you would typically make an API call to save the organization data
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating API call
-
-      Swal.fire({
-        icon: "success",
-        title: "Organization Set Successfully!",
-        text: "Welcome to your new workspace.",
-        showConfirmButton: false,
-        timer: 1500,
+      await OrgService.createOrganization(orgRequest).then((res) => {
+        console.log(res);
+        if (res) {
+          Swal.fire({
+            icon: "success",
+            title: "Organization Set Successfully!",
+            text: "Welcome to your new workspace.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard");
+        }
       });
 
-      navigate("/dashboard");
-    } catch (error) {
+
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Oops...",
