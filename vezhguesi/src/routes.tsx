@@ -17,7 +17,7 @@ import Admin from "./pages/Admin";
 import ForgotPw from "./pages/Auth/ForgotPw";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
-import { SetOrganization } from "./pages";
+import Organizations from "./pages/Organizations";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "reports", // Relative path for reports
         element: <MyReports />,
+      },
+      {
+        path: "organizations",
+        element: <Organizations />,
       },
       {
         path: "profile", // Relative path for profile
@@ -85,10 +89,6 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
-  },
-  {
-    path: "/set-organization",
-    element: <SetOrganization />,
   },
   {
     path: "/verify-signup/:token",

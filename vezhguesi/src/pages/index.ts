@@ -9,5 +9,5 @@ export { default as SingleReport } from "./SingleReport";
 export { default as Signup } from "./Auth/Signup";
 export { default as VerifyEmail } from "./VerifyEmail";
 export { default as Signin } from "./Auth/Signin";
-export { default as SetOrganization } from "./Auth/SetOrganization";
 export { default as Singlebot } from "./Singlebot";
+export { default as Organizations } from "./Organizations";
