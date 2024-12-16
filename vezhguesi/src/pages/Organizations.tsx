@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import SetOrganization from "../components/SetOrganization";
+import OrgService from "../services/Org";
+import { UserOrgRole } from "../models/Org";
 
 const Organizations: React.FC = () => {
   const { currentUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [organizations, setOrganizations] = useState<UserOrgRole[]>([]);
+
+  useEffect(() => {
+    const fetchOrganizations = async () => {
+      try {
+        const orgs = await OrgService.findMyOrgs();
+        // Ensure orgs is treated as an array
+        setOrganizations(Array.isArray(orgs) ? orgs : [orgs]);
+      } catch (error) {
+        console.error("Error fetching organizations:", error);
+      }
+    };
+    fetchOrganizations();
+  }, []);
 
   return (
     <>
@@ -42,57 +58,36 @@ const Organizations: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group">
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600">
-                  Organization 1
-                </h3>
-                <svg
-                  className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-all duration-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+          {organizations.map((org) => (
+            <div
+              key={`${org.userId}-${org.orgId}`}
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600">
+                    {org.name}
+                  </h3>
+                  <svg
+                    className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-all duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+                <p className="text-gray-600">
+                  Click to view details and manage organization
+                </p>
               </div>
-              <p className="text-gray-600">
-                Click to view details and manage organization
-              </p>
             </div>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group">
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600">
-                  Organization 2
-                </h3>
-                <svg
-                  className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-all duration-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-              <p className="text-gray-600">
-                Click to view details and manage organization
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
