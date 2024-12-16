@@ -12,12 +12,15 @@ import SingleReport from "./pages/SingleReport";
 import Signup from "./pages/Auth/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import PageLayout from "./components/PageLayout";
+//import OrgPageLayout from "./components/org/OrgPageLayout";     IMPORT FOR ORG LAYOUT
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import ForgotPw from "./pages/Auth/ForgotPw";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
 import Organizations from "./pages/Organizations";
+import Settings from "./pages/Org/Settings";
+import Members from "./pages/Org/Members";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +54,14 @@ const router = createBrowserRouter([
       {
         path: "organizations",
         element: <Organizations />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
+        path: "members",
+        element: <Members />,
       },
       {
         path: "profile", // Relative path for profile
