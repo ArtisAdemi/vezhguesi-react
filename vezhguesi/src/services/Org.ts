@@ -12,7 +12,7 @@ class OrgService {
     return response.data;
   }
 
-  async findMyOrgs(): Promise<UserOrgRole> {
+  async findMyOrgs(): Promise<UserOrgRole[]> {
     const response = await axios.get(`${ORG_API_URL}/orgs/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
