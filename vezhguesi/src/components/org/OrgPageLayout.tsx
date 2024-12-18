@@ -157,7 +157,7 @@ const OrgPageLayout: React.FC = () => {
               to="/dashboard"
               onClick={toggleSidebar}
               className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                location.pathname === "/organizations"
+                location.pathname === "/dashboard"
                   ? "text-blue-500"
                   : "text-gray-500"
               } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
