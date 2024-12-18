@@ -6,9 +6,12 @@ import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import image1 from "../../assets/image 1.jpg";
+import { useUserOrgRole } from '../../hooks/UserOrgRoleProvider';
+import OrgService from '../../services/Org';
 
 const Signin: React.FC = () => {
   const { handleLogin } = useAuth();
+  const { setUserOrgRoles } = useUserOrgRole();
   const [loginData, setLoginData] = useState<LoginRequest>({
     email: "",
     password: "",
@@ -27,10 +30,16 @@ const Signin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await handleLogin(loginData).then((res: LoginResponse) => {
-        console.log(res);
+      await handleLogin(loginData).then(async (res: LoginResponse) => {
         if (res && res.token) {
-          navigate("/dashboard");
+          // Fetch user's organization roles after successful login
+          try {
+            const orgRoles = await OrgService.findMyOrgs();
+            setUserOrgRoles(orgRoles);
+            navigate("/dashboard");
+          } catch (error) {
+            console.error("Failed to fetch organization roles:", error);
+          }
         } else if (res && res.error) {
           Swal.fire({
             icon: 'error',

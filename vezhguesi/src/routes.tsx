@@ -12,12 +12,17 @@ import SingleReport from "./pages/SingleReport";
 import Signup from "./pages/Auth/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import PageLayout from "./components/PageLayout";
+//import OrgPageLayout from "./components/org/OrgPageLayout";     IMPORT FOR ORG LAYOUT
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import ForgotPw from "./pages/Auth/ForgotPw";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import LandingPage from "./pages/LandingPage";
-import { SetOrganization } from "./pages";
+import Organizations from "./pages/Organizations";
+import Settings from "./pages/Org/Settings";
+import Members from "./pages/Org/Members";
+import SingleOrganization from "./pages/Org/SingleOrganization";
+import OrgProtectedRoute from "./hooks/OrgProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +52,18 @@ const router = createBrowserRouter([
       {
         path: "reports", // Relative path for reports
         element: <MyReports />,
+      },
+      {
+        path: "organizations",
+        element: <Organizations />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
+        path: "members",
+        element: <Members />,
       },
       {
         path: "profile", // Relative path for profile
@@ -79,16 +96,54 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/o/:orgSlug", // Base path for organization
+    element: (
+      <OrgProtectedRoute>
+        <SingleOrganization />
+      </OrgProtectedRoute>
+    ),
+    children: [
+      {
+        path: "dashboard", // Nested route for dashboard
+        element: <Dashboard />, // Render Dashboard component
+      },
+      {
+        path: "settings", // Nested route for settings
+        element: <Settings />, // Render Settings component
+      },
+      {
+        path: "members",
+        element: <Members />,
+      },
+      {
+        path: "categories",
+        element: <Categories />,
+      },
+      {
+        path: "bots",
+        element: <Bots />,
+      },
+      {
+        path: "reports",
+        element: <MyReports />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "tools",
+        element: <Tools />,
+      },
+    ],
+  },
+  {
     path: "/signin",
     element: <Signin />,
   },
   {
     path: "/signup",
     element: <Signup />,
-  },
-  {
-    path: "/set-organization",
-    element: <SetOrganization />,
   },
   {
     path: "/verify-signup/:token",
