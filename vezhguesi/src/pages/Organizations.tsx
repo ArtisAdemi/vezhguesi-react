@@ -4,24 +4,12 @@ import SetOrganization from "../components/SetOrganization";
 import { useQuery } from "react-query";
 import OrgService from "../services/Org";
 import { UserOrgRole } from "../models/Org";
+import { useNavigate } from "react-router-dom";
 
 const Organizations: React.FC = () => {
   const { currentUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  //const [organizations, setOrganizations] = useState<UserOrgRole[]>([]);
-
-  // useEffect(() => {
-  //   const fetchOrganizations = async () => {
-  //     try {
-  //       const orgs = await OrgService.findMyOrgs();
-  //       // Ensure orgs is treated as an array
-  //       setOrganizations(Array.isArray(orgs) ? orgs : [orgs]);
-  //     } catch (error) {
-  //       console.error("Error fetching organizations:", error);
-  //     }
-  //   };
-  //   fetchOrganizations();
-  // }, []);
+  const navigate = useNavigate();
 
   // Use React Query to fetch organizations
   const {
@@ -41,6 +29,10 @@ const Organizations: React.FC = () => {
   if (isError) {
     return <p>Error fetching organizations: {error.message}</p>;
   }
+
+  const handleOrganizationClick = (slug: string) => {
+    navigate(`/o/${slug}/dashboard`);
+  };
 
   return (
     <>
@@ -84,6 +76,7 @@ const Organizations: React.FC = () => {
               <div
                 key={`${org.userId}-${org.orgId}`}
                 className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                onClick={() => handleOrganizationClick(org.slug)}
               >
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">

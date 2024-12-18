@@ -21,6 +21,7 @@ import LandingPage from "./pages/LandingPage";
 import Organizations from "./pages/Organizations";
 import Settings from "./pages/Org/Settings";
 import Members from "./pages/Org/Members";
+import SingleOrganization from "./pages/Org/SingleOrganization";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,44 @@ const router = createBrowserRouter([
             <Admin />
           </ProtectedRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "/o/:orgSlug", // Base path for organization
+    element: <SingleOrganization />, // Use the SingleOrganization component
+    children: [
+      {
+        path: "dashboard", // Nested route for dashboard
+        element: <Dashboard />, // Render Dashboard component
+      },
+      {
+        path: "settings", // Nested route for settings
+        element: <Settings />, // Render Settings component
+      },
+      {
+        path: "members",
+        element: <Members />,
+      },
+      {
+        path: "categories",
+        element: <Categories />,
+      },
+      {
+        path: "bots",
+        element: <Bots />,
+      },
+      {
+        path: "reports",
+        element: <MyReports />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "tools",
+        element: <Tools />,
       },
     ],
   },
