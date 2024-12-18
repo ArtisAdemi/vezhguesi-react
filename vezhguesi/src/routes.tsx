@@ -22,6 +22,7 @@ import Organizations from "./pages/Organizations";
 import Settings from "./pages/Org/Settings";
 import Members from "./pages/Org/Members";
 import SingleOrganization from "./pages/Org/SingleOrganization";
+import OrgProtectedRoute from "./hooks/OrgProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -96,7 +97,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/o/:orgSlug", // Base path for organization
-    element: <SingleOrganization />, // Use the SingleOrganization component
+    element: (
+      <OrgProtectedRoute>
+        <SingleOrganization />
+      </OrgProtectedRoute>
+    ),
     children: [
       {
         path: "dashboard", // Nested route for dashboard
