@@ -74,8 +74,8 @@ const Members: React.FC = () => {
           </button>
         </div>
 
-        <table className="min-w-full bg-white border border-gray-200">
-          <thead>
+        <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-gray-700 text-white">
             <tr>
               <th className="py-2 px-4 border-b">Name</th>
               <th className="py-2 px-4 border-b">Role</th>
@@ -84,19 +84,26 @@ const Members: React.FC = () => {
           </thead>
           <tbody>
             {members &&
-              members?.orgMembers.map((member: OrgMember) => (
-                <tr key={member.user.id}>
-                  <td className="py-2 px-4 border-b">{member.user.username}</td>
-                  <td className="py-2 px-4 border-b">
-                    {roleIdToString(member.userOrgRole.roleId)}
-                  </td>
-                  <td className="py-2 px-4 border-b">
-                    <button className="text-blue-600 hover:underline">
-                      View Profile
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              members.orgMembers
+                .filter((member: OrgMember) => member.user.username) // Filter out members without a username
+                .map((member: OrgMember) => (
+                  <tr
+                    key={member.user.id}
+                    className="hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    <td className="py-2 px-4 border-b">
+                      {member.user.username}
+                    </td>
+                    <td className="py-2 px-4 border-b">
+                      {roleIdToString(member.userOrgRole.roleId)}
+                    </td>
+                    <td className="py-2 px-4 border-b">
+                      <button className="text-blue-600 hover:underline flex items-center">
+                        <i className="fas fa-user-circle mr-1"></i> View Profile
+                      </button>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>
