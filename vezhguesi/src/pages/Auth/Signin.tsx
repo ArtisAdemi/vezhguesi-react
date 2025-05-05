@@ -34,11 +34,30 @@ const Signin: React.FC = () => {
         if (res && res.token) {
           // Fetch user's organization roles after successful login
           try {
+            console.log("Login successful, fetching organization roles");
             const orgRoles = await OrgService.findMyOrgs(res.token);
-            setUserOrgRoles(orgRoles);
+            console.log("Organization roles fetched:", orgRoles);
+            
+            // Ensure orgRoles is an array before setting it
+            if (Array.isArray(orgRoles)) {
+              setUserOrgRoles(orgRoles);
+              console.log("Organization roles set in context");
+              
+              // Verify that roles are saved to localStorage
+              setTimeout(() => {
+                const storedRoles = localStorage.getItem("userOrgRoles");
+                console.log("Verified userOrgRoles in localStorage:", storedRoles);
+              }, 100);
+            } else {
+              console.error("Organization roles is not an array:", orgRoles);
+              setUserOrgRoles([]);
+            }
+            
             navigate("/dashboard");
           } catch (error) {
             console.error("Failed to fetch organization roles:", error);
+            setUserOrgRoles([]);
+            navigate("/dashboard");
           }
         } else if (res && res.error) {
           Swal.fire({

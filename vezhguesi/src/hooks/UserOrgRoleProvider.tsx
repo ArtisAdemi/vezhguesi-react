@@ -11,15 +11,33 @@ export const UserOrgRoleContext = createContext<UserOrgRoleContextType | undefin
 
 export const UserOrgRoleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [userOrgRoles, setUserOrgRoles] = useState<UserOrgRole[]>(() => {
-        const storedRoles = localStorage.getItem("userOrgRoles");
-        return storedRoles ? JSON.parse(storedRoles) : [];
+        try {
+            const storedRoles = localStorage.getItem("userOrgRoles");
+            console.log("Initializing userOrgRoles from localStorage:", storedRoles);
+            
+            if (storedRoles) {
+                const parsedRoles = JSON.parse(storedRoles);
+                console.log("Parsed userOrgRoles:", parsedRoles);
+                return Array.isArray(parsedRoles) ? parsedRoles : [];
+            }
+            return [];
+        } catch (error) {
+            console.error("Error loading userOrgRoles from localStorage:", error);
+            return [];
+        }
     });
 
     useEffect(() => {
-        localStorage.setItem("userOrgRoles", JSON.stringify(userOrgRoles));
+        try {
+            console.log("Saving userOrgRoles to localStorage:", userOrgRoles);
+            localStorage.setItem("userOrgRoles", JSON.stringify(userOrgRoles));
+        } catch (error) {
+            console.error("Error saving userOrgRoles to localStorage:", error);
+        }
     }, [userOrgRoles]);
 
     const clearOrgRoles = () => {
+        console.log("Clearing organization roles");
         setUserOrgRoles([]);
         localStorage.removeItem("userOrgRoles");
     };
@@ -37,4 +55,4 @@ export const useUserOrgRole = () => {
         throw new Error('useUserOrgRole must be used within a UserOrgRoleProvider');
     }
     return context;
-}; 
+};
