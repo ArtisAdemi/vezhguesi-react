@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import SetOrganization from "../components/SetOrganization";
 import { useQuery } from "react-query";
 import OrgService from "../services/Org";
 import { UserOrgRole } from "../models/Org";
 import { useNavigate } from "react-router-dom";
+import { useUserOrgRole } from "../hooks/UserOrgRoleProvider";
 
 const Organizations: React.FC = () => {
   const { currentUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const { authToken } = useAuth();
+  const { setUserOrgRoles } = useUserOrgRole();
 
   // Use React Query to fetch organizations
   const {
@@ -18,6 +20,7 @@ const Organizations: React.FC = () => {
     isLoading,
     isError,
     error,
+    refetch
   } = useQuery<UserOrgRole[], Error>(
     ["organizations"],
     () => OrgService.findMyOrgs(authToken!),
@@ -28,8 +31,24 @@ const Organizations: React.FC = () => {
       onError: (error) => {
         console.error("Error fetching organizations:", error);
       },
+      onSuccess: (data) => {
+        console.log("Organizations fetched successfully:", data);
+        // Update the user org roles in context and localStorage
+        if (Array.isArray(data)) {
+          setUserOrgRoles(data);
+          console.log("Updated userOrgRoles in context from Organizations page");
+        }
+      }
     }
   );
+
+  // Effect to update localStorage on component mount
+  useEffect(() => {
+    if (Array.isArray(organizations) && organizations.length > 0) {
+      setUserOrgRoles(organizations);
+      console.log("Updated userOrgRoles from Organizations component mount");
+    }
+  }, [organizations, setUserOrgRoles]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -46,6 +65,10 @@ const Organizations: React.FC = () => {
     navigate(`/o/${slug}/dashboard`);
   };
 
+  const handleManualRefresh = () => {
+    refetch();
+  };
+
   return (
     <>
       <div className="p-8 bg-gray-50 min-h-screen">
@@ -60,25 +83,33 @@ const Organizations: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-800">
             Your Organizations
           </h2>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2 shadow-md"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex gap-4">
+            <button
+              onClick={handleManualRefresh}
+              className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-all duration-200"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-            Create Organization
-          </button>
+              Refresh Organizations
+            </button>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2 shadow-md"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              Create Organization
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
