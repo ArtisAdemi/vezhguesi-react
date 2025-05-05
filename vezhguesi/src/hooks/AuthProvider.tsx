@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useState, useEffect } from "react";
 import { LoginRequest, LoginResponse, UserData } from "../models/Auth";
 import AuthService from "../services/Auth";
+import { useUserOrgRole } from './UserOrgRoleProvider';
 
 type AuthContext = {
     authToken?: string | null;
@@ -16,6 +17,7 @@ export const AuthContext = createContext<AuthContext | undefined>(undefined);
 type AuthProviderProps = PropsWithChildren;
 
 export default function AuthProvider({ children }: AuthProviderProps) {
+    const { clearOrgRoles } = useUserOrgRole();
     const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem("token"));
     const [currentUser, setCurrentUser] = useState<UserData | null | undefined>(() => {
         const storedUser = localStorage.getItem("currentUser");
@@ -61,6 +63,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setCurrentUser(null);
         localStorage.removeItem("token");
         localStorage.removeItem("currentUser");
+        clearOrgRoles();
     }
 
     return (

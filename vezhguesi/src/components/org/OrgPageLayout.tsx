@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Navbar from "./Navbar";
 import {
   FaHome,
   FaPen,
@@ -8,11 +7,16 @@ import {
   FaFileAlt,
   FaStar,
   FaTools,
-  FaBuilding,
+  FaUserFriends,
+  FaAngleLeft,
 } from "react-icons/fa";
-import Logout from "./Logout";
+import { FaGear } from "react-icons/fa6";
+import Logout from "../Logout";
+import Navbar from "../Navbar";
+import { useParams } from "react-router-dom";
 
-const PageLayout: React.FC = () => {
+const OrgPageLayout: React.FC = () => {
+  const { orgSlug } = useParams<{ orgSlug: string }>();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -35,10 +39,10 @@ const PageLayout: React.FC = () => {
           <ul className="space-y-2 ">
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard"
+                to={`/o/${orgSlug}/dashboard`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard"
+                  location.pathname === `/o/${orgSlug}/dashboard`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
@@ -49,10 +53,10 @@ const PageLayout: React.FC = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/categories"
+                to={`/o/${orgSlug}/categories`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/categories"
+                  location.pathname === `/o/${orgSlug}/categories`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
@@ -63,10 +67,10 @@ const PageLayout: React.FC = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/bots"
+                to={`/o/${orgSlug}/bots`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/bots"
+                  location.pathname === `/o/${orgSlug}/bots`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
@@ -77,24 +81,24 @@ const PageLayout: React.FC = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/reports"
+                to={`/o/${orgSlug}/reports`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/reports"
+                  location.pathname === `/o/${orgSlug}/reports`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
                 <FaFileAlt size={20} />
-                <span>My Reports</span>
+                <span>Reports</span>
               </Link>
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/favorites"
+                to={`/o/${orgSlug}/favorites`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/favorites"
+                  location.pathname === `/o/${orgSlug}/favorites`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
@@ -105,10 +109,10 @@ const PageLayout: React.FC = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/tools"
+                to={`/o/${orgSlug}/tools`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/tools"
+                  location.pathname === `/o/${orgSlug}/tools`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
@@ -119,21 +123,49 @@ const PageLayout: React.FC = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Link
-                to="/dashboard/organizations"
+                to={`/o/${orgSlug}/members`}
                 onClick={toggleSidebar}
                 className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
-                  location.pathname === "/dashboard/organizations"
+                  location.pathname === `/o/${orgSlug}/members`
                     ? "text-blue-500"
                     : "text-gray-500"
                 } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
               >
-                <FaBuilding size={20} />
-                <span>Organizations</span>
+                <FaUserFriends size={20} />
+                <span>Members</span>
+              </Link>
+            </li>
+            <li className="flex items-center space-x-2">
+              <Link
+                to={`/o/${orgSlug}/settings`}
+                onClick={toggleSidebar}
+                className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
+                  location.pathname === `/o/${orgSlug}/settings`
+                    ? "text-blue-500"
+                    : "text-gray-500"
+                } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+              >
+                <FaGear size={20} />
+                <span>Settings</span>
               </Link>
             </li>
           </ul>
         </nav>
         <div className="absolute bottom-0 w-full  left-0 p-4">
+          <li className="flex items-center space-x-2 mb-5">
+            <Link
+              to="/dashboard"
+              onClick={toggleSidebar}
+              className={`flex space-x-4 font-medium text-lg items-center px-1 py-2 w-full rounded-md ${
+                location.pathname === "/dashboard"
+                  ? "text-blue-500"
+                  : "text-gray-500"
+              } hover:bg-[#E9F5FE] hover:text-blue-500 transition-colors duration-200`}
+            >
+              <FaAngleLeft size={20} />
+              <span>User Dashboard</span>
+            </Link>
+          </li>
           <Logout />
         </div>
       </aside>
@@ -158,4 +190,4 @@ const PageLayout: React.FC = () => {
   );
 };
 
-export default PageLayout;
+export default OrgPageLayout;

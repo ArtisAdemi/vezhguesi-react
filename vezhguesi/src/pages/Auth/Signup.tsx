@@ -4,11 +4,12 @@ import { SignupRequest } from "../../models/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import google from "../../assets/google.jpg";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image1 from "../../assets/image 1.jpg";
 
 const Signup: React.FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -65,6 +66,12 @@ const Signup: React.FC = () => {
         icon: "success",
         title: "Signup successful!",
         text: "An email has been sent into your inbox, in order to verify your account.",
+        showConfirmButton: true,
+        confirmButtonText: "Continue",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          navigate("/set-organization");
+        }
       });
     } catch (error) {
       console.error("Signup error:", error);

@@ -17,7 +17,7 @@ const LandingSource: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent opacity-95"></div>
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col mt-[30%] justify-center items-center">
+      <div className="relative inset-0 flex flex-col -mt-[60%] md:-mt-[20%] justify-center items-center">
         <h2 className="text-3xl md:text-4xl lg:text-6xl text-[#E0E0E0] font-semibold mt-20">
           Your Automated News Source
         </h2>
