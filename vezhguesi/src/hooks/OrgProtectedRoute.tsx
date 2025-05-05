@@ -11,6 +11,11 @@ export default function OrgProtectedRoute({ children }: OrgProtectedRouteProps) 
     const { userOrgRoles } = useUserOrgRole();
     const { currentUser } = useAuth();
 
+    // Debug information
+    console.log("OrgProtectedRoute - Current User:", currentUser);
+    console.log("OrgProtectedRoute - Organization Slug:", orgSlug);
+    console.log("OrgProtectedRoute - User Org Roles:", userOrgRoles);
+
     if (currentUser === undefined) {
         return <NotLoggedIn />;
     }
@@ -21,8 +26,13 @@ export default function OrgProtectedRoute({ children }: OrgProtectedRouteProps) 
 
     // Safely check if userOrgRoles is an array before calling .some()
     const hasOrgAccess = Array.isArray(userOrgRoles) && userOrgRoles.length > 0 
-        ? userOrgRoles.some(role => role.slug === orgSlug)
+        ? userOrgRoles.some(role => {
+            console.log(`Comparing role slug: ${role.slug} with orgSlug: ${orgSlug}`);
+            return role.slug.toLowerCase() === orgSlug?.toLowerCase();
+        })
         : false;
+
+    console.log("OrgProtectedRoute - Has Access:", hasOrgAccess);
 
     if (!hasOrgAccess) {
         return (
