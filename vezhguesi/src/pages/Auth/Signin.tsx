@@ -34,7 +34,7 @@ const Signin: React.FC = () => {
         if (res && res.token) {
           // Fetch user's organization roles after successful login
           try {
-            const orgRoles = await OrgService.findMyOrgs();
+            const orgRoles = await OrgService.findMyOrgs(res.token);
             setUserOrgRoles(orgRoles);
             navigate("/dashboard");
           } catch (error) {

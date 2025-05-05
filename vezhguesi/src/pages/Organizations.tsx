@@ -10,6 +10,7 @@ const Organizations: React.FC = () => {
   const { currentUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { authToken } = useAuth();
 
   // Use React Query to fetch organizations
   const {
@@ -17,10 +18,14 @@ const Organizations: React.FC = () => {
     isLoading,
     isError,
     error,
-  } = useQuery<UserOrgRole[], Error>(["organizations"], OrgService.findMyOrgs, {
-    staleTime: 1000 * 60 * 5, // Data is considered fresh for 5 minutes
-    retry: 1, // Retry failed requests once
-  });
+  } = useQuery<UserOrgRole[], Error>(
+    ["organizations"],
+    () => OrgService.findMyOrgs(authToken!),
+    {
+      staleTime: 1000 * 60 * 5,
+      retry: 1,
+    }
+  );
 
   if (isLoading) {
     return <p>Loading...</p>;
